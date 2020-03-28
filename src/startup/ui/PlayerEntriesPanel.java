@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 class PlayerEntriesPanel extends JPanel {
 
 	private static final long serialVersionUID = -6940232339738566884L;
+	private static final int MIN_PLAYERS = 3;
+	private static final int MAX_PLAYERS = 4;
 	private static final int DEFAULT_NUM_PLAYERS = 4;
 	private static final String NUM_PLAYERS_ERROR = "Number of players must be 3 or 4";
 
@@ -47,10 +49,10 @@ class PlayerEntriesPanel extends JPanel {
 	 * @param numPlayers
 	 *            The number of player entry panels to be displayed
 	 * @throws IllegalArgumentException
-	 *             If numPlayers is not in the range [3, 4]
+	 *             If numPlayers is not a valid number of players
 	 */
 	final void setNumPlayers(final int numPlayers) throws IllegalArgumentException {
-		if (numPlayers < 3 || numPlayers > 4) {
+		if (numPlayers < MIN_PLAYERS || numPlayers > MAX_PLAYERS) {
 			throw new IllegalArgumentException(NUM_PLAYERS_ERROR);
 		}
 
