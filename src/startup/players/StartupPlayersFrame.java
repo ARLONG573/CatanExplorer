@@ -5,32 +5,32 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 /**
- * This is the frame that holds all of the UI components for the startup menu.
+ * This is the frame that holds all of the UI components for the startup players menu.
  * 
  * @author Aaron Tetens
  */
-public class StartupUIFrame extends JFrame {
+public class StartupPlayersFrame extends JFrame {
 
 	private static final long serialVersionUID = -3139989974895643941L;
 
-	private static StartupUIFrame theInstance;
+	private static StartupPlayersFrame theInstance;
 
-	private StartupUIFrame() {
+	private StartupPlayersFrame() {
 		super.setLayout(new BorderLayout());
 		super.add(NumPlayersPanel.getInstance(), BorderLayout.NORTH);
 		super.add(PlayerEntriesPanel.getInstance(), BorderLayout.CENTER);
-		super.add(LaunchButtonPanel.getInstance(), BorderLayout.SOUTH);
+		super.add(ConfirmPlayersButtonPanel.getInstance(), BorderLayout.SOUTH);
 		super.setLocationRelativeTo(null);
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		super.pack();
 	}
 
 	/**
-	 * @return The StartupUIFrame instance
+	 * @return The StartupPlayersFrame instance
 	 */
-	public static StartupUIFrame getInstance() {
+	public static StartupPlayersFrame getInstance() {
 		if (theInstance == null) {
-			theInstance = new StartupUIFrame();
+			theInstance = new StartupPlayersFrame();
 		}
 
 		return theInstance;

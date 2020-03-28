@@ -17,24 +17,24 @@ import data.PlayerColor;
  * 
  * @author Aaron Tetens
  */
-public class LaunchButtonPanel extends JPanel {
+public class ConfirmPlayersButtonPanel extends JPanel {
 
 	private static final long serialVersionUID = 261221856020394181L;
-	private static final String LAUNCH_BUTTON_TEXT = "Launch";
+	private static final String CONFIRM_PLAYERS_BUTTON_TEXT = "Confirm Players";
 	private static final String ERROR_TITLE = "Error";
 	private static final String EMPTY_NAME_ERROR = "All players must have names";
 	private static final String DUPLICATE_NAME_ERROR = "No two players can have the same name";
 	private static final String DUPLICATE_COLOR_ERROR = "No two players can have the same color";
 
-	private final JButton launchButton;
+	private final JButton confirmButton;
 
-	private static LaunchButtonPanel theInstance;
+	private static ConfirmPlayersButtonPanel theInstance;
 
-	private LaunchButtonPanel() {
+	private ConfirmPlayersButtonPanel() {
 		super(new BorderLayout());
 
-		this.launchButton = new JButton(LAUNCH_BUTTON_TEXT);
-		this.launchButton.addActionListener((e) -> {
+		this.confirmButton = new JButton(CONFIRM_PLAYERS_BUTTON_TEXT);
+		this.confirmButton.addActionListener((e) -> {
 			// only launch the board editor if the player entries are valid
 			final String[] playerNames = PlayerEntriesPanel.getInstance().getPlayerNames();
 			final PlayerColor[] playerColors = PlayerEntriesPanel.getInstance().getPlayerColors();
@@ -63,15 +63,15 @@ public class LaunchButtonPanel extends JPanel {
 			System.out.println("success");
 		});
 
-		super.add(this.launchButton, BorderLayout.EAST);
+		super.add(this.confirmButton, BorderLayout.EAST);
 	}
 
 	/**
-	 * @return The LaunchButtonPanel instance
+	 * @return The ConfirmPlayersButtonPanel instance
 	 */
-	static LaunchButtonPanel getInstance() {
+	static ConfirmPlayersButtonPanel getInstance() {
 		if (theInstance == null) {
-			theInstance = new LaunchButtonPanel();
+			theInstance = new ConfirmPlayersButtonPanel();
 		}
 
 		return theInstance;
