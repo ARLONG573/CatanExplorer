@@ -24,7 +24,7 @@ public class LaunchButtonPanel extends JPanel {
 	private static final String ERROR_TITLE = "Error";
 	private static final String EMPTY_NAME_ERROR = "All players must have names";
 	private static final String DUPLICATE_NAME_ERROR = "No two players can have the same name";
-	private static final String DUPLICATE_COLOR_ERROR = "No two player can have the same color";
+	private static final String DUPLICATE_COLOR_ERROR = "No two players can have the same color";
 
 	private final JButton launchButton;
 
@@ -41,7 +41,7 @@ public class LaunchButtonPanel extends JPanel {
 
 			// check for empty names
 			for (final String playerName : playerNames) {
-				if (playerName == null || playerName.trim().isEmpty()) {
+				if (playerName == null || playerName.isEmpty()) {
 					this.displayErrorDialog(EMPTY_NAME_ERROR);
 					return;
 				}

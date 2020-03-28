@@ -6,6 +6,8 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
+import data.PlayerColor;
+
 /**
  * This is the panel that holds the components that are necessary for entering
  * player information during startup.
@@ -86,5 +88,25 @@ class PlayerEntriesPanel extends JPanel {
 
 		super.revalidate();
 		super.repaint();
+	}
+
+	String[] getPlayerNames() {
+		final String[] playerNames = new String[this.playerEntryPanels.size()];
+
+		for (int i = 0; i < this.playerEntryPanels.size(); i++) {
+			playerNames[i] = this.playerEntryPanels.get(i).getPlayerName();
+		}
+
+		return playerNames;
+	}
+
+	PlayerColor[] getPlayerColors() {
+		final PlayerColor[] playerColors = new PlayerColor[this.playerEntryPanels.size()];
+
+		for (int i = 0; i < this.playerEntryPanels.size(); i++) {
+			playerColors[i] = this.playerEntryPanels.get(i).getPlayerColor();
+		}
+
+		return playerColors;
 	}
 }
