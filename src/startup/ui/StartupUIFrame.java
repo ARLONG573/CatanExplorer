@@ -18,7 +18,8 @@ public class StartupUIFrame extends JFrame {
 	private StartupUIFrame() {
 		super.setLayout(new BorderLayout());
 		super.add(NumPlayersPanel.getInstance(), BorderLayout.NORTH);
-		super.add(PlayerEntriesPanel.getInstance(), BorderLayout.SOUTH);
+		super.add(PlayerEntriesPanel.getInstance(), BorderLayout.CENTER);
+		super.add(LaunchButtonPanel.getInstance(), BorderLayout.SOUTH);
 		super.setLocationRelativeTo(null);
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		super.pack();
