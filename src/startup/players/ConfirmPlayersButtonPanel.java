@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import data.PlayerColor;
+import startup.board.StartupBoardFrame;
 
 /**
  * This is the panel that holds the button that the user clicks to leave the
@@ -60,7 +61,12 @@ public class ConfirmPlayersButtonPanel extends JPanel {
 			}
 
 			// all checks passed, continue to the board editor
-			System.out.println("success");
+
+			// instead of creating the player data and disposing of the player frame now, we
+			// will accumulate all of the data at once and dispose of both frames after
+			// the board is created
+			StartupPlayersFrame.getInstance().setVisible(false);
+			StartupBoardFrame.getInstance().setVisible(true);
 		});
 
 		super.add(this.confirmButton, BorderLayout.EAST);
