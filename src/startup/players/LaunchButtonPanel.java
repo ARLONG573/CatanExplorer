@@ -1,4 +1,4 @@
-package startup.ui;
+package startup.players;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;

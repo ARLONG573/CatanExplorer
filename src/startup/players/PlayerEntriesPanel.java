@@ -1,4 +1,4 @@
-package startup.ui;
+package startup.players;
 
 import java.util.ArrayList;
 import java.util.List;
