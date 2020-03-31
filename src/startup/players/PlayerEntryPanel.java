@@ -1,5 +1,8 @@
 package startup.players;
 
+import java.awt.Dimension;
+
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -17,8 +20,9 @@ import data.PlayerColor;
 class PlayerEntryPanel extends JPanel {
 
 	private static final long serialVersionUID = 5947952408283942209L;
-	private static final String NAME_LABEL_TEXT = "Name ";
+	private static final String NAME_LABEL_TEXT = "Name";
 	private static final int DEFAULT_TEXT_FIELD_COLUMNS = 10;
+	private static final int PADDING = 5;
 
 	private final JLabel nameLabel;
 	private final JTextField nameField;
@@ -32,7 +36,9 @@ class PlayerEntryPanel extends JPanel {
 		this.colorComboBox = new JComboBox<>(PlayerColor.class.getEnumConstants());
 
 		super.add(this.nameLabel);
+		super.add(Box.createRigidArea(new Dimension(PADDING, 0)));
 		super.add(this.nameField);
+		super.add(Box.createRigidArea(new Dimension(PADDING, 0)));
 		super.add(this.colorComboBox);
 	}
 

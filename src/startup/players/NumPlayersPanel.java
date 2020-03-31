@@ -1,5 +1,8 @@
 package startup.players;
 
+import java.awt.Dimension;
+
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,9 +17,10 @@ import javax.swing.JPanel;
 class NumPlayersPanel extends JPanel {
 
 	private static final long serialVersionUID = -1602013603239879104L;
-	private static final String NUM_PLAYERS_LABEL_TEXT = "Number of Players ";
+	private static final String NUM_PLAYERS_LABEL_TEXT = "Number of Players";
 	private static final String THREE_PLAYERS_BUTTON_TEXT = "3";
 	private static final String FOUR_PLAYERS_BUTTON_TEXT = "4";
+	private static final int PADDING = 5;
 
 	private final JLabel numPlayersLabel;
 	private final JButton threePlayersButton;
@@ -35,7 +39,9 @@ class NumPlayersPanel extends JPanel {
 		this.fourPlayersButton.addActionListener((e) -> PlayerEntriesPanel.getInstance().setNumPlayers(4));
 
 		super.add(this.numPlayersLabel);
+		super.add(Box.createRigidArea(new Dimension(PADDING, 0)));
 		super.add(this.threePlayersButton);
+		super.add(Box.createRigidArea(new Dimension(PADDING, 0)));
 		super.add(this.fourPlayersButton);
 	}
 
