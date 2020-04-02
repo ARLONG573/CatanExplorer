@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import utils.ErrorUtils;
+
 /**
  * This is the panel that holds the components that are necessary for choosing
  * the number of players during startup.
@@ -35,8 +37,8 @@ class NumPlayersPanel extends JPanel {
 		this.threePlayersButton = new JButton(THREE_PLAYERS_BUTTON_TEXT);
 		this.fourPlayersButton = new JButton(FOUR_PLAYERS_BUTTON_TEXT);
 
-		this.threePlayersButton.addActionListener((e) -> PlayerEntriesPanel.getInstance().setNumPlayers(3));
-		this.fourPlayersButton.addActionListener((e) -> PlayerEntriesPanel.getInstance().setNumPlayers(4));
+		this.threePlayersButton.addActionListener((e) -> this.setNumPlayers(3));
+		this.fourPlayersButton.addActionListener((e) -> this.setNumPlayers(4));
 
 		super.add(this.numPlayersLabel);
 		super.add(Box.createRigidArea(new Dimension(PADDING, 0)));
@@ -54,5 +56,20 @@ class NumPlayersPanel extends JPanel {
 		}
 
 		return theInstance;
+	}
+
+	/**
+	 * This method tells the PlayerEntriesPanel how many player entires it should
+	 * display.
+	 * 
+	 * @param numPlayers
+	 *            The number of player entries to be displayed
+	 */
+	private void setNumPlayers(final int numPlayers) {
+		try {
+			PlayerEntriesPanel.getInstance().setNumPlayers(numPlayers);
+		} catch (final IllegalArgumentException e) {
+			ErrorUtils.displayErrorMessage(e.getMessage());
+		}
 	}
 }
