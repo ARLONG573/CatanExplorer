@@ -90,6 +90,10 @@ class PlayerEntriesPanel extends JPanel {
 		super.repaint();
 	}
 
+	/**
+	 * @return An array containing the names of the players, in the order they
+	 *         appear on the screen
+	 */
 	String[] getPlayerNames() {
 		final String[] playerNames = new String[this.playerEntryPanels.size()];
 
@@ -100,6 +104,10 @@ class PlayerEntriesPanel extends JPanel {
 		return playerNames;
 	}
 
+	/**
+	 * @return An array containing the colors of the playres, in the order they
+	 *         appear on the screen
+	 */
 	PlayerColor[] getPlayerColors() {
 		final PlayerColor[] playerColors = new PlayerColor[this.playerEntryPanels.size()];
 

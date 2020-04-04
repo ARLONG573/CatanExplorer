@@ -49,6 +49,9 @@ class PlayerEntryPanel extends JPanel {
 		return this.nameField.getText().trim();
 	}
 
+	/**
+	 * @return The player's color
+	 */
 	PlayerColor getPlayerColor() {
 		return (PlayerColor) (this.colorComboBox.getSelectedItem());
 	}

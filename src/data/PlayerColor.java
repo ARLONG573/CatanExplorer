@@ -24,6 +24,9 @@ public enum PlayerColor {
 		return this.name;
 	}
 
+	/**
+	 * @return The Java color that this player color represents
+	 */
 	public Color asColor() {
 		return this.color;
 	}
