@@ -1,6 +1,8 @@
 package startup.board;
 
-import javax.swing.JLabel;
+import java.awt.BorderLayout;
+
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
@@ -12,11 +14,17 @@ import javax.swing.JPanel;
 class ConfirmBoardButtonPanel extends JPanel {
 
 	private static final long serialVersionUID = 3350286239540011079L;
+	private static final String CONFIRM_BOARD_BUTTON_TEXT = "Confirm Board";
+
+	private final JButton confirmBoardButton;
 
 	private static ConfirmBoardButtonPanel theInstance;
 
 	private ConfirmBoardButtonPanel() {
-		super.add(new JLabel("Confirm Board Button Panel"));
+		super(new BorderLayout());
+
+		this.confirmBoardButton = new JButton(CONFIRM_BOARD_BUTTON_TEXT);
+		super.add(this.confirmBoardButton, BorderLayout.EAST);
 	}
 
 	/**
