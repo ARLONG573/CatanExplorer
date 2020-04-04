@@ -1,0 +1,27 @@
+package startup.board;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+class BoardEditor extends JPanel {
+
+	private static final long serialVersionUID = -1135127351978142227L;
+
+	private static BoardEditor theInstance;
+
+	private BoardEditor() {
+		super.add(new JLabel("Board Editor"));
+	}
+
+	/**
+	 * @return The BoardEditor instance
+	 */
+	static BoardEditor getInstance() {
+		if (theInstance == null) {
+			theInstance = new BoardEditor();
+		}
+
+		return theInstance;
+	}
+
+}

@@ -18,7 +18,7 @@ import utils.ErrorUtils;
  * 
  * @author Aaron Tetens
  */
-public class ConfirmPlayersButtonPanel extends JPanel {
+class ConfirmPlayersButtonPanel extends JPanel {
 
 	private static final long serialVersionUID = 261221856020394181L;
 	private static final String CONFIRM_PLAYERS_BUTTON_TEXT = "Confirm Players";

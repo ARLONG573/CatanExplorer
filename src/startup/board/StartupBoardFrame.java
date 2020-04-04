@@ -1,5 +1,7 @@
 package startup.board;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JFrame;
 
 /**
@@ -15,7 +17,12 @@ public class StartupBoardFrame extends JFrame {
 	private static StartupBoardFrame theInstance;
 
 	private StartupBoardFrame() {
+		super.setLayout(new BorderLayout());
+		super.add(BoardEditor.getInstance(), BorderLayout.CENTER);
+		super.add(BoardToolbar.getInstance(), BorderLayout.EAST);
+		super.setLocationRelativeTo(null);
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		super.pack();
 	}
 
 	/**
