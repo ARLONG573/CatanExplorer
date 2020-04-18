@@ -10,13 +10,13 @@ import startup.board.data.selectable.Selectable;
  * 
  * @author Aaron Tetens
  */
-class SelectableButton extends JButton {
+class SelectionButton extends JButton {
 
 	private static final long serialVersionUID = 8049570099616321459L;
 
 	private final Selectable selectable;
 
-	SelectableButton(final Selectable selectable) {
+	SelectionButton(final Selectable selectable) {
 		this.selectable = selectable;
 
 		super.setBackground(this.selectable.getBackgroundColor());
