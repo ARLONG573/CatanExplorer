@@ -1,4 +1,4 @@
-package startup.board.data;
+package startup.board.data.selectable;
 
 import java.awt.Color;
 
@@ -8,7 +8,7 @@ import java.awt.Color;
  * 
  * @author Aaron Tetens
  */
-interface Selectable {
+public interface Selectable {
 
 	/**
 	 * @return The background color of the visual representation of this Selectable

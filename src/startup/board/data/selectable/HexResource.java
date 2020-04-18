@@ -1,4 +1,4 @@
-package startup.board.data;
+package startup.board.data.selectable;
 
 import java.awt.Color;
 
