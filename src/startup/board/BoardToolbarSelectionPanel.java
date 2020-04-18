@@ -1,6 +1,9 @@
 package startup.board;
 
-import javax.swing.JLabel;
+import java.awt.Dimension;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 /**
@@ -12,11 +15,17 @@ import javax.swing.JPanel;
 class BoardToolbarSelectionPanel extends JPanel {
 
 	private static final long serialVersionUID = 7345269466179575642L;
+	private static final int PADDING = 5;
 
 	private static BoardToolbarSelectionPanel theInstance;
 
 	private BoardToolbarSelectionPanel() {
-		super.add(new JLabel("Board Toolbar Selection Panel"));
+		super.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		super.add(ResourceSelectionPanel.getInstance());
+		super.add(Box.createRigidArea(new Dimension(PADDING, 0)));
+		super.add(NumberSelectionPanel.getInstance());
+		super.add(Box.createRigidArea(new Dimension(PADDING, 0)));
+		super.add(PortSelectionPanel.getInstance());
 	}
 
 	/**
