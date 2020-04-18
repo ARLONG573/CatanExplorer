@@ -13,8 +13,5 @@ interface Selectable {
 	/**
 	 * @return The background color of the visual representation of this Selectable
 	 */
-	Color getBackgroundColor();
-
-	@Override
-	String toString();
+	public Color getBackgroundColor();
 }
