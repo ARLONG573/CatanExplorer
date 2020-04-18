@@ -1,4 +1,4 @@
-package startup.players;
+package startup.players.ui;
 
 import java.awt.BorderLayout;
 

@@ -1,10 +1,12 @@
-package startup.players;
+package startup.players.ui;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+
+import startup.players.data.PlayerColor;
 
 /**
  * This is the panel that holds the components that are necessary for entering

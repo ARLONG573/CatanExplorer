@@ -1,4 +1,4 @@
-package startup.players;
+package startup.players.ui;
 
 import java.awt.Dimension;
 
@@ -8,6 +8,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import startup.players.data.PlayerColor;
 
 /**
  * This is the panel that holds all of the components necessary for entering

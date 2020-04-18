@@ -1,4 +1,4 @@
-package startup.board;
+package startup.board.ui;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;

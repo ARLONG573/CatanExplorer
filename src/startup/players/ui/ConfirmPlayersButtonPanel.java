@@ -1,4 +1,4 @@
-package startup.players;
+package startup.players.ui;
 
 import java.awt.BorderLayout;
 import java.util.HashSet;
@@ -7,7 +7,8 @@ import java.util.Set;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import startup.board.StartupBoardFrame;
+import startup.board.ui.StartupBoardFrame;
+import startup.players.data.PlayerColor;
 import utils.ErrorUtils;
 
 /**

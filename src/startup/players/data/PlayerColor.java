@@ -1,4 +1,4 @@
-package startup.players;
+package startup.players.data;
 
 import java.awt.Color;
 
@@ -7,7 +7,7 @@ import java.awt.Color;
  * 
  * @author Aaron Tetens
  */
-enum PlayerColor {
+public enum PlayerColor {
 
 	RED("Red", Color.RED), WHITE("White", Color.WHITE), BLUE("Blue", Color.BLUE), ORANGE("Orange", Color.ORANGE);
 
