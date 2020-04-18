@@ -2,6 +2,12 @@ package startup.board.data;
 
 import java.awt.Color;
 
+/**
+ * This is an enumeration of all of the possible resources that can be selected
+ * for some hex on the startup board editor.
+ * 
+ * @author Aaron Tetens
+ */
 enum HexResource implements Selectable {
 	WOOD("Wood", new Color(0, 128, 0)), BRICK("Brick", new Color(128, 0, 0)), SHEEP("Sheep",
 			new Color(0, 255, 0)), WHEAT("Wheat", new Color(255, 255, 0)), ORE("Ore",
