@@ -1,4 +1,4 @@
-import startup.players.StartupPlayersFrame;
+import startup.players.ui.StartupPlayersFrame;
 
 /**
  * This is the main class for the CatanExplorer program. Its sole responsibility

@@ -1,4 +1,4 @@
-package startup.players;
+package startup.players.ui;
 
 import java.awt.Dimension;
 
@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import data.PlayerColor;
+import startup.players.data.PlayerColor;
 
 /**
  * This is the panel that holds all of the components necessary for entering
@@ -43,14 +43,17 @@ class PlayerEntryPanel extends JPanel {
 	}
 
 	/**
-	 * @return The player's name (trimmed)
+	 * @return The player's name (trimmed). If the name is null, an empty String is
+	 *         returned.
 	 */
 	String getPlayerName() {
-		return this.nameField.getText().trim();
+		final String text = this.nameField.getText();
+
+		return text == null ? "" : text.trim();
 	}
 
 	/**
-	 * @return The player's color
+	 * @return The player's color.
 	 */
 	PlayerColor getPlayerColor() {
 		return (PlayerColor) (this.colorComboBox.getSelectedItem());

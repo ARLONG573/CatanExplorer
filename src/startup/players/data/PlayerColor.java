@@ -1,4 +1,4 @@
-package data;
+package startup.players.data;
 
 import java.awt.Color;
 
