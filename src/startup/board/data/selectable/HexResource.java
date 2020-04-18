@@ -8,7 +8,7 @@ import java.awt.Color;
  * 
  * @author Aaron Tetens
  */
-enum HexResource implements Selectable {
+public enum HexResource implements Selectable {
 	WOOD("Wood", new Color(0, 128, 0)), BRICK("Brick", new Color(128, 0, 0)), SHEEP("Sheep",
 			new Color(0, 255, 0)), WHEAT("Wheat", new Color(255, 255, 0)), ORE("Ore",
 					new Color(128, 128, 128)), DESERT("Desert", new Color(100, 65, 0));

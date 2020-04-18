@@ -8,7 +8,7 @@ import java.awt.Color;
  * 
  * @author Aaron Tetens
  */
-enum PortType implements Selectable {
+public enum PortType implements Selectable {
 	WOOD_PORT("Wood Port", HexResource.WOOD.getBackgroundColor()), BRICK_PORT("Brick Port",
 			HexResource.BRICK.getBackgroundColor()), SHEEP_PORT("Sheep Port",
 					HexResource.SHEEP.getBackgroundColor()), WHEAT_PORT("Wheat Port",

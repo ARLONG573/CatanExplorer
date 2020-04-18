@@ -8,7 +8,7 @@ import java.awt.Color;
  * 
  * @author Aaron Tetens
  */
-enum HexNumber implements Selectable {
+public enum HexNumber implements Selectable {
 	TWO("2"), THREE("3"), FOUR("4"), FIVE("5"), SIX("6"), EIGHT("8"), NINE("9"), TEN("10"), ELEVEN("11"), TWELVE("12");
 
 	private final String name;

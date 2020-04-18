@@ -6,6 +6,10 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
+import startup.board.data.selectable.HexNumber;
+import startup.board.data.selectable.HexResource;
+import startup.board.data.selectable.PortType;
+
 /**
  * This is where the user can select which board component they would like to
  * add to the editable board.
@@ -21,11 +25,11 @@ class BoardToolbarSelectionPanel extends JPanel {
 
 	private BoardToolbarSelectionPanel() {
 		super.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-		super.add(ResourceSelectionPanel.getInstance());
+		super.add(new SelectionPanel(HexResource.class));
 		super.add(Box.createRigidArea(new Dimension(PADDING, 0)));
-		super.add(NumberSelectionPanel.getInstance());
+		super.add(new SelectionPanel(HexNumber.class));
 		super.add(Box.createRigidArea(new Dimension(PADDING, 0)));
-		super.add(PortSelectionPanel.getInstance());
+		super.add(new SelectionPanel(PortType.class));
 	}
 
 	/**
