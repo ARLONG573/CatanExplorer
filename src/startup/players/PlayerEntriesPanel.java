@@ -6,8 +6,6 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
-import data.PlayerColor;
-
 /**
  * This is the panel that holds the components that are necessary for entering
  * player information during startup.

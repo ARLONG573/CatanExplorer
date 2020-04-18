@@ -9,8 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import data.PlayerColor;
-
 /**
  * This is the panel that holds all of the components necessary for entering
  * information about a single player.

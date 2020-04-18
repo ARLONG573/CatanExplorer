@@ -7,7 +7,6 @@ import java.util.Set;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import data.PlayerColor;
 import startup.board.StartupBoardFrame;
 import utils.ErrorUtils;
 
