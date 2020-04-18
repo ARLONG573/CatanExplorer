@@ -14,10 +14,18 @@ class SelectionButton extends JButton {
 
 	private static final long serialVersionUID = 8049570099616321459L;
 
+	/**
+	 * If the given selectable is null, this button displays and does nothing.
+	 * 
+	 * @param selectable
+	 *            The selectable that this button handles
+	 */
 	SelectionButton(final Selectable selectable) {
-		super.setBackground(selectable.getBackgroundColor());
-		super.setText(selectable.toString());
+		if (selectable != null) {
+			super.setBackground(selectable.getBackgroundColor());
+			super.setText(selectable.toString());
 
-		super.addActionListener((e) -> System.out.println("Selected " + selectable));
+			super.addActionListener((e) -> System.out.println("Selected " + selectable));
+		}
 	}
 }

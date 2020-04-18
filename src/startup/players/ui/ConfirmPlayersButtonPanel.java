@@ -25,6 +25,7 @@ class ConfirmPlayersButtonPanel extends JPanel {
 	private static final String EMPTY_NAME_ERROR = "All players must have names";
 	private static final String DUPLICATE_NAME_ERROR = "No two players can have the same name";
 	private static final String DUPLICATE_COLOR_ERROR = "No two players can have the same color";
+	private static final String NULL_OBJECT_ERROR = "Received null objects during verification";
 
 	private final JButton confirmButton;
 
@@ -34,7 +35,7 @@ class ConfirmPlayersButtonPanel extends JPanel {
 		super(new BorderLayout());
 
 		this.confirmButton = new JButton(CONFIRM_PLAYERS_BUTTON_TEXT);
-		this.confirmButton.addActionListener((e) -> {
+		this.confirmButton.addActionListener((evt) -> {
 			// only launch the board editor if the player entries are valid
 			final String[] playerNames = PlayerEntriesPanel.getInstance().getPlayerNames();
 			final PlayerColor[] playerColors = PlayerEntriesPanel.getInstance().getPlayerColors();
@@ -48,14 +49,24 @@ class ConfirmPlayersButtonPanel extends JPanel {
 			}
 
 			// check for duplicate name
-			if (this.containsDuplicate(playerNames)) {
-				ErrorUtils.displayErrorMessage(DUPLICATE_NAME_ERROR);
+			try {
+				if (this.containsDuplicate(playerNames)) {
+					ErrorUtils.displayErrorMessage(DUPLICATE_NAME_ERROR);
+					return;
+				}
+			} catch (final IllegalArgumentException e) {
+				ErrorUtils.displayErrorMessage(e.getMessage());
 				return;
 			}
 
 			// check for duplicate color
-			if (this.containsDuplicate(playerColors)) {
-				ErrorUtils.displayErrorMessage(DUPLICATE_COLOR_ERROR);
+			try {
+				if (this.containsDuplicate(playerColors)) {
+					ErrorUtils.displayErrorMessage(DUPLICATE_COLOR_ERROR);
+					return;
+				}
+			} catch (final IllegalArgumentException e) {
+				ErrorUtils.displayErrorMessage(e.getMessage());
 				return;
 			}
 
@@ -89,11 +100,21 @@ class ConfirmPlayersButtonPanel extends JPanel {
 	 * @param arr
 	 *            The array to check
 	 * @return Whether or not the array contains a duplicate
+	 * @throws IllegalArgumentException
+	 *             If arr contains a null object
 	 */
-	private boolean containsDuplicate(final Object[] arr) {
+	private boolean containsDuplicate(final Object[] arr) throws IllegalArgumentException {
+		if (arr == null) {
+			return false;
+		}
+
 		final Set<Object> cache = new HashSet<>();
 
 		for (final Object obj : arr) {
+			if (obj == null) {
+				throw new IllegalArgumentException(NULL_OBJECT_ERROR);
+			}
+
 			if (cache.contains(obj)) {
 				return true;
 			}

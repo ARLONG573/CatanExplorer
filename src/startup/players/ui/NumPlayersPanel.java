@@ -59,7 +59,7 @@ class NumPlayersPanel extends JPanel {
 	}
 
 	/**
-	 * This method tells the PlayerEntriesPanel how many player entires it should
+	 * This method tells the PlayerEntriesPanel how many player entries it should
 	 * display.
 	 * 
 	 * @param numPlayers
