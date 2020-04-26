@@ -77,6 +77,7 @@ class ConfirmPlayersButtonPanel extends JPanel {
 			// the board is created
 			StartupPlayersFrame.getInstance().setVisible(false);
 			StartupBoardFrame.getInstance().setVisible(true);
+			StartupBoardFrame.getInstance().setLocationRelativeTo(null);
 		});
 
 		super.add(this.confirmButton, BorderLayout.EAST);

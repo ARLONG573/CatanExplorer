@@ -9,5 +9,6 @@ import startup.players.ui.StartupPlayersFrame;
 public class CatanExplorerMain {
 	public static void main(String[] args) {
 		StartupPlayersFrame.getInstance().setVisible(true);
+		StartupPlayersFrame.getInstance().setLocationRelativeTo(null);
 	}
 }

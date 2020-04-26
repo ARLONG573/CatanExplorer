@@ -1,6 +1,9 @@
 package startup.board.ui;
 
-import javax.swing.JLabel;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+
 import javax.swing.JPanel;
 
 /**
@@ -11,11 +14,12 @@ import javax.swing.JPanel;
 class BoardEditor extends JPanel {
 
 	private static final long serialVersionUID = -1135127351978142227L;
+	private static final int BOARD_SIZE = 1000;
 
 	private static BoardEditor theInstance;
 
 	private BoardEditor() {
-		super.add(new JLabel("Board Editor"));
+		super.setPreferredSize(new Dimension(BOARD_SIZE, BOARD_SIZE));
 	}
 
 	/**
@@ -29,4 +33,9 @@ class BoardEditor extends JPanel {
 		return theInstance;
 	}
 
+	@Override
+	protected void paintComponent(final Graphics g) {
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, 200, 200);
+	}
 }
