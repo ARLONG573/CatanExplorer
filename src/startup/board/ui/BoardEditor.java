@@ -1,10 +1,13 @@
 package startup.board.ui;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.swing.JPanel;
+
+import startup.board.editable.Editable;
 
 /**
  * This is the panel that displays the editable board components.
@@ -14,12 +17,17 @@ import javax.swing.JPanel;
 class BoardEditor extends JPanel {
 
 	private static final long serialVersionUID = -1135127351978142227L;
-	private static final int BOARD_SIZE = 1000;
+	private static final int BOARD_SIZE = 900;
 
 	private static BoardEditor theInstance;
 
+	private final Set<Editable> editables;
+
 	private BoardEditor() {
 		super.setPreferredSize(new Dimension(BOARD_SIZE, BOARD_SIZE));
+
+		this.editables = new HashSet<>();
+		this.addEditables();
 	}
 
 	/**
@@ -33,9 +41,18 @@ class BoardEditor extends JPanel {
 		return theInstance;
 	}
 
+	/**
+	 * Initializes this class's editable set with all of the editable elements for
+	 * the board editor (19 hexes and 9 ports).
+	 */
+	private void addEditables() {
+		// TODO
+	}
+
 	@Override
 	protected void paintComponent(final Graphics g) {
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, 200, 200);
+		for (final Editable editable : this.editables) {
+			editable.draw(g);
+		}
 	}
 }
