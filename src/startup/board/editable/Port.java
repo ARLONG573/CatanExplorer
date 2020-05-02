@@ -41,7 +41,20 @@ public class Port implements Editable {
 		this.yPoints = new int[nPoints];
 
 		if (hex != null) {
-
+			switch (position) {
+			case TOP_LEFT:
+				break;
+			case TOP_RIGHT:
+				break;
+			case RIGHT:
+				break;
+			case BOTTOM_RIGHT:
+				break;
+			case BOTTOM_LEFT:
+				break;
+			case LEFT:
+				break;
+			}
 		}
 
 		this.type = PortType.THREE_TO_ONE_PORT;
@@ -62,6 +75,7 @@ public class Port implements Editable {
 
 	@Override
 	public void draw(final Graphics g) {
+		this.setType(PortType.SHEEP_PORT);
 		// fill
 		g.setColor(this.type.getBackgroundColor());
 		g.fillPolygon(this.xPoints, this.yPoints, this.nPoints);

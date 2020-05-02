@@ -77,6 +77,20 @@ class BoardEditor extends JPanel {
 		this.editables.add(new Hex(5 * Hex.X_DIST, 7 * Hex.HEX_RADIUS + 4 * Hex.Y_DIST).addPort(Port.BOTTOM_LEFT));
 		this.editables.add(new Hex(7 * Hex.X_DIST, 7 * Hex.HEX_RADIUS + 4 * Hex.Y_DIST).addPort(Port.BOTTOM_RIGHT));
 		this.editables.add(new Hex(9 * Hex.X_DIST, 7 * Hex.HEX_RADIUS + 4 * Hex.Y_DIST));
+
+		// even though the ports are attached to their hexes, we will keep a copy of
+		// them in the editables set to easily send them click events
+		final Set<Port> ports = new HashSet<>();
+
+		for (final Editable hex : this.editables) {
+			final Port port = ((Hex) hex).getPort();
+
+			if (port != null) {
+				ports.add(port);
+			}
+		}
+
+		this.editables.addAll(ports);
 	}
 
 	@Override

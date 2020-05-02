@@ -107,8 +107,16 @@ public class Hex implements Editable {
 		return this;
 	}
 
+	/**
+	 * @return The port that is attached to this hex, or null if there isn't one
+	 */
+	public Port getPort() {
+		return this.port;
+	}
+
 	@Override
 	public void draw(final Graphics g) {
+		this.setNumber(HexNumber.TWELVE);
 		// fill
 		g.setColor(this.resource.getBackgroundColor());
 		g.fillPolygon(this.xPoints, this.yPoints, this.nPoints);
