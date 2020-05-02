@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.swing.JPanel;
 
 import startup.board.editable.Editable;
+import startup.board.editable.Hex;
 
 /**
  * This is the panel that displays the editable board components.
@@ -46,7 +47,7 @@ class BoardEditor extends JPanel {
 	 * the board editor (19 hexes and 9 ports).
 	 */
 	private void addEditables() {
-		// TODO
+		this.editables.add(new Hex(300, 300));
 	}
 
 	@Override

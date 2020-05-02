@@ -12,7 +12,18 @@ import startup.board.data.selectable.HexResource;
  */
 public class Hex implements Editable {
 
-	public static final int HEX_WIDTH = 150;
+	// distance from center to any point
+	private static final int HEX_RADIUS = 75;
+
+	// horizontal distance from center to left/right edge
+	private static final int X_DIST = (int) (HEX_RADIUS * Math.sqrt(3) / 2);
+
+	// vertical distance from center to any of the four side points
+	private static final int Y_DIST = (int) (HEX_RADIUS / 2);
+
+	private final int[] xPoints;
+	private final int[] yPoints;
+	private final int nPoints;
 
 	private final int x;
 	private final int y;
@@ -29,6 +40,25 @@ public class Hex implements Editable {
 	public Hex(final int x, final int y) {
 		this.x = x;
 		this.y = y;
+
+		// the points are drawn from the top, going clockwise
+		this.nPoints = 6;
+		this.xPoints = new int[nPoints];
+		this.yPoints = new int[nPoints];
+
+		this.xPoints[0] = this.x;
+		this.xPoints[1] = this.x + X_DIST;
+		this.xPoints[2] = this.x + X_DIST;
+		this.xPoints[3] = this.x;
+		this.xPoints[4] = this.x - X_DIST;
+		this.xPoints[5] = this.x - X_DIST;
+
+		this.yPoints[0] = this.y - HEX_RADIUS;
+		this.yPoints[1] = this.y - Y_DIST;
+		this.yPoints[2] = this.y + Y_DIST;
+		this.yPoints[3] = this.y + HEX_RADIUS;
+		this.yPoints[4] = this.y + Y_DIST;
+		this.yPoints[5] = this.y - Y_DIST;
 
 		this.resource = HexResource.DESERT;
 		this.number = HexNumber.NONE;
@@ -62,7 +92,8 @@ public class Hex implements Editable {
 
 	@Override
 	public void draw(final Graphics g) {
-		// TODO
+		g.setColor(this.resource.getBackgroundColor());
+		g.fillPolygon(this.xPoints, this.yPoints, this.nPoints);
 	}
 
 	@Override
