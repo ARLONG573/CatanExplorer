@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import startup.board.editable.Editable;
 import startup.board.editable.Hex;
+import startup.board.editable.Port;
 
 /**
  * This is the panel that displays the editable board components.
@@ -49,32 +50,32 @@ class BoardEditor extends JPanel {
 	 */
 	private void addEditables() {
 		// first row
-		this.editables.add(new Hex(5 * Hex.X_DIST, 3 * Hex.HEX_RADIUS));
-		this.editables.add(new Hex(7 * Hex.X_DIST, 3 * Hex.HEX_RADIUS));
+		this.editables.add(new Hex(5 * Hex.X_DIST, 3 * Hex.HEX_RADIUS).addPort(Port.TOP_LEFT));
+		this.editables.add(new Hex(7 * Hex.X_DIST, 3 * Hex.HEX_RADIUS).addPort(Port.TOP_RIGHT));
 		this.editables.add(new Hex(9 * Hex.X_DIST, 3 * Hex.HEX_RADIUS));
 
 		// second row
-		this.editables.add(new Hex(4 * Hex.X_DIST, 4 * Hex.HEX_RADIUS + Hex.Y_DIST));
+		this.editables.add(new Hex(4 * Hex.X_DIST, 4 * Hex.HEX_RADIUS + Hex.Y_DIST).addPort(Port.LEFT));
 		this.editables.add(new Hex(6 * Hex.X_DIST, 4 * Hex.HEX_RADIUS + Hex.Y_DIST));
 		this.editables.add(new Hex(8 * Hex.X_DIST, 4 * Hex.HEX_RADIUS + Hex.Y_DIST));
-		this.editables.add(new Hex(10 * Hex.X_DIST, 4 * Hex.HEX_RADIUS + Hex.Y_DIST));
+		this.editables.add(new Hex(10 * Hex.X_DIST, 4 * Hex.HEX_RADIUS + Hex.Y_DIST).addPort(Port.TOP_RIGHT));
 
 		// third row
 		this.editables.add(new Hex(3 * Hex.X_DIST, 5 * Hex.HEX_RADIUS + 2 * Hex.Y_DIST));
 		this.editables.add(new Hex(5 * Hex.X_DIST, 5 * Hex.HEX_RADIUS + 2 * Hex.Y_DIST));
 		this.editables.add(new Hex(7 * Hex.X_DIST, 5 * Hex.HEX_RADIUS + 2 * Hex.Y_DIST));
 		this.editables.add(new Hex(9 * Hex.X_DIST, 5 * Hex.HEX_RADIUS + 2 * Hex.Y_DIST));
-		this.editables.add(new Hex(11 * Hex.X_DIST, 5 * Hex.HEX_RADIUS + 2 * Hex.Y_DIST));
+		this.editables.add(new Hex(11 * Hex.X_DIST, 5 * Hex.HEX_RADIUS + 2 * Hex.Y_DIST).addPort(Port.RIGHT));
 
 		// fourth row
-		this.editables.add(new Hex(4 * Hex.X_DIST, 6 * Hex.HEX_RADIUS + 3 * Hex.Y_DIST));
+		this.editables.add(new Hex(4 * Hex.X_DIST, 6 * Hex.HEX_RADIUS + 3 * Hex.Y_DIST).addPort(Port.LEFT));
 		this.editables.add(new Hex(6 * Hex.X_DIST, 6 * Hex.HEX_RADIUS + 3 * Hex.Y_DIST));
 		this.editables.add(new Hex(8 * Hex.X_DIST, 6 * Hex.HEX_RADIUS + 3 * Hex.Y_DIST));
-		this.editables.add(new Hex(10 * Hex.X_DIST, 6 * Hex.HEX_RADIUS + 3 * Hex.Y_DIST));
+		this.editables.add(new Hex(10 * Hex.X_DIST, 6 * Hex.HEX_RADIUS + 3 * Hex.Y_DIST).addPort(Port.BOTTOM_RIGHT));
 
 		// fifth row
-		this.editables.add(new Hex(5 * Hex.X_DIST, 7 * Hex.HEX_RADIUS + 4 * Hex.Y_DIST));
-		this.editables.add(new Hex(7 * Hex.X_DIST, 7 * Hex.HEX_RADIUS + 4 * Hex.Y_DIST));
+		this.editables.add(new Hex(5 * Hex.X_DIST, 7 * Hex.HEX_RADIUS + 4 * Hex.Y_DIST).addPort(Port.BOTTOM_LEFT));
+		this.editables.add(new Hex(7 * Hex.X_DIST, 7 * Hex.HEX_RADIUS + 4 * Hex.Y_DIST).addPort(Port.BOTTOM_RIGHT));
 		this.editables.add(new Hex(9 * Hex.X_DIST, 7 * Hex.HEX_RADIUS + 4 * Hex.Y_DIST));
 	}
 

@@ -32,6 +32,7 @@ public class Hex implements Editable {
 
 	private HexResource resource;
 	private HexNumber number;
+	private Port port;
 
 	/**
 	 * Creates a new Hex centered at (x, y)
@@ -64,6 +65,7 @@ public class Hex implements Editable {
 
 		this.resource = HexResource.DESERT;
 		this.number = HexNumber.NONE;
+		this.port = null;
 	}
 
 	/**
@@ -92,6 +94,19 @@ public class Hex implements Editable {
 		}
 	}
 
+	/**
+	 * @param position
+	 *            Where on the hex the port is located; should be one of the static
+	 *            constants in the Port class.
+	 * 
+	 * @return This hex instance with the port attached
+	 */
+	public Hex addPort(final int position) {
+		this.port = new Port(this, position);
+
+		return this;
+	}
+
 	@Override
 	public void draw(final Graphics g) {
 		// fill
@@ -111,6 +126,11 @@ public class Hex implements Editable {
 		final int textHeight = metrics.getHeight();
 
 		g.drawString(text, this.x - textWidth / 2, this.y + textHeight / 2);
+
+		// port
+		if (this.port != null) {
+			this.port.draw(g);
+		}
 	}
 
 	@Override
