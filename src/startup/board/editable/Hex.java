@@ -1,7 +1,9 @@
 package startup.board.editable;
 
-import java.awt.Color;
 import java.awt.Graphics;
+
+import startup.board.data.selectable.HexNumber;
+import startup.board.data.selectable.HexResource;
 
 /**
  * This class represents a drawable hex on the startup board editor.
@@ -15,8 +17,8 @@ public class Hex implements Editable {
 	private final int x;
 	private final int y;
 
-	private Color color;
-	private int number;
+	private HexResource resource;
+	private HexNumber number;
 
 	/**
 	 * Creates a new Hex centered at (x, y)
@@ -27,36 +29,33 @@ public class Hex implements Editable {
 	public Hex(final int x, final int y) {
 		this.x = x;
 		this.y = y;
+
+		this.resource = HexResource.DESERT;
+		this.number = HexNumber.NONE;
 	}
 
 	/**
-	 * Sets this hex's color to the given new color. If the given new color is the
-	 * same as the current color, the color is set to white (represents a clear
-	 * operation).
+	 * Sets this hex's resource to the given new resource. If the given new resource
+	 * is null, this method does nothing.
 	 * 
-	 * @param color
-	 *            The new color for this hex
+	 * @param resource
+	 *            The new resource for this hex
 	 */
-	public void setColor(final Color color) {
-		if (color == this.color) {
-			this.color = Color.WHITE;
-		} else {
-			this.color = color;
+	public void setResource(final HexResource resource) {
+		if (resource != null) {
+			this.resource = resource;
 		}
 	}
 
 	/**
 	 * Sets this hex's number to the given new number. If the given new number is
-	 * the same as the current number, the number is set to -1 (represents a clear
-	 * operation).
+	 * null, this method does nothing.
 	 * 
 	 * @param number
 	 *            The new number for this hex
 	 */
-	public void setNumber(final int number) {
-		if (number == this.number) {
-			this.number = -1;
-		} else {
+	public void setNumber(final HexNumber number) {
+		if (number != null) {
 			this.number = number;
 		}
 	}

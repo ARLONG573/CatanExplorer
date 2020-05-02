@@ -9,12 +9,22 @@ import java.awt.Color;
  * @author Aaron Tetens
  */
 public enum HexNumber implements Selectable {
-	TWO("2"), THREE("3"), FOUR("4"), FIVE("5"), SIX("6"), EIGHT("8"), NINE("9"), TEN("10"), ELEVEN("11"), TWELVE("12");
+	TWO(2, "2"), THREE(3, "3"), FOUR(4, "4"), FIVE(5, "5"), SIX(6, "6"), EIGHT(8, "8"), NINE(9, "9"), TEN(10,
+			"10"), ELEVEN(11, "11"), TWELVE(12, "12"), NONE(-1, "");
 
+	private final int number;
 	private final String name;
 
-	private HexNumber(final String name) {
+	private HexNumber(final int number, final String name) {
+		this.number = number;
 		this.name = name;
+	}
+
+	/**
+	 * @return This HexNumber as an integer
+	 */
+	public int asInt() {
+		return this.number;
 	}
 
 	@Override
