@@ -1,6 +1,7 @@
 package startup.board.editable;
 
 import java.awt.Color;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 
 import startup.board.data.selectable.HexNumber;
@@ -100,6 +101,16 @@ public class Hex implements Editable {
 		// outline
 		g.setColor(Color.BLACK);
 		g.drawPolygon(this.xPoints, this.yPoints, this.nPoints);
+
+		// number
+		g.setFont(HexNumber.FONT);
+
+		final FontMetrics metrics = g.getFontMetrics();
+		final String text = this.number.toString();
+		final int textWidth = metrics.stringWidth(text);
+		final int textHeight = metrics.getHeight();
+
+		g.drawString(text, this.x - textWidth / 2, this.y + textHeight / 2);
 	}
 
 	@Override
