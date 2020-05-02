@@ -1,5 +1,6 @@
 package startup.board.editable;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import startup.board.data.selectable.HexNumber;
@@ -13,13 +14,13 @@ import startup.board.data.selectable.HexResource;
 public class Hex implements Editable {
 
 	// distance from center to any point
-	private static final int HEX_RADIUS = 75;
+	public static final int HEX_RADIUS = 75;
 
 	// horizontal distance from center to left/right edge
-	private static final int X_DIST = (int) (HEX_RADIUS * Math.sqrt(3) / 2);
+	public static final int X_DIST = (int) (HEX_RADIUS * Math.sqrt(3) / 2);
 
 	// vertical distance from center to any of the four side points
-	private static final int Y_DIST = (int) (HEX_RADIUS / 2);
+	public static final int Y_DIST = (int) (HEX_RADIUS / 2);
 
 	private final int[] xPoints;
 	private final int[] yPoints;
@@ -92,8 +93,13 @@ public class Hex implements Editable {
 
 	@Override
 	public void draw(final Graphics g) {
+		// fill
 		g.setColor(this.resource.getBackgroundColor());
 		g.fillPolygon(this.xPoints, this.yPoints, this.nPoints);
+
+		// outline
+		g.setColor(Color.BLACK);
+		g.drawPolygon(this.xPoints, this.yPoints, this.nPoints);
 	}
 
 	@Override

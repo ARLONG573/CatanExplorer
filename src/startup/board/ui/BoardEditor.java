@@ -44,10 +44,38 @@ class BoardEditor extends JPanel {
 
 	/**
 	 * Initializes this class's editable set with all of the editable elements for
-	 * the board editor (19 hexes and 9 ports).
+	 * the board editor (19 hexes and 9 ports). The padding in each direction is
+	 * equal to the width of one hex in that direction.
 	 */
 	private void addEditables() {
-		this.editables.add(new Hex(300, 300));
+		// first row
+		this.editables.add(new Hex(5 * Hex.X_DIST, 3 * Hex.HEX_RADIUS));
+		this.editables.add(new Hex(7 * Hex.X_DIST, 3 * Hex.HEX_RADIUS));
+		this.editables.add(new Hex(9 * Hex.X_DIST, 3 * Hex.HEX_RADIUS));
+
+		// second row
+		this.editables.add(new Hex(4 * Hex.X_DIST, 4 * Hex.HEX_RADIUS + Hex.Y_DIST));
+		this.editables.add(new Hex(6 * Hex.X_DIST, 4 * Hex.HEX_RADIUS + Hex.Y_DIST));
+		this.editables.add(new Hex(8 * Hex.X_DIST, 4 * Hex.HEX_RADIUS + Hex.Y_DIST));
+		this.editables.add(new Hex(10 * Hex.X_DIST, 4 * Hex.HEX_RADIUS + Hex.Y_DIST));
+
+		// third row
+		this.editables.add(new Hex(3 * Hex.X_DIST, 5 * Hex.HEX_RADIUS + 2 * Hex.Y_DIST));
+		this.editables.add(new Hex(5 * Hex.X_DIST, 5 * Hex.HEX_RADIUS + 2 * Hex.Y_DIST));
+		this.editables.add(new Hex(7 * Hex.X_DIST, 5 * Hex.HEX_RADIUS + 2 * Hex.Y_DIST));
+		this.editables.add(new Hex(9 * Hex.X_DIST, 5 * Hex.HEX_RADIUS + 2 * Hex.Y_DIST));
+		this.editables.add(new Hex(11 * Hex.X_DIST, 5 * Hex.HEX_RADIUS + 2 * Hex.Y_DIST));
+
+		// fourth row
+		this.editables.add(new Hex(4 * Hex.X_DIST, 6 * Hex.HEX_RADIUS + 3 * Hex.Y_DIST));
+		this.editables.add(new Hex(6 * Hex.X_DIST, 6 * Hex.HEX_RADIUS + 3 * Hex.Y_DIST));
+		this.editables.add(new Hex(8 * Hex.X_DIST, 6 * Hex.HEX_RADIUS + 3 * Hex.Y_DIST));
+		this.editables.add(new Hex(10 * Hex.X_DIST, 6 * Hex.HEX_RADIUS + 3 * Hex.Y_DIST));
+
+		// fifth row
+		this.editables.add(new Hex(5 * Hex.X_DIST, 7 * Hex.HEX_RADIUS + 4 * Hex.Y_DIST));
+		this.editables.add(new Hex(7 * Hex.X_DIST, 7 * Hex.HEX_RADIUS + 4 * Hex.Y_DIST));
+		this.editables.add(new Hex(9 * Hex.X_DIST, 7 * Hex.HEX_RADIUS + 4 * Hex.Y_DIST));
 	}
 
 	@Override
