@@ -20,7 +20,7 @@ import startup.board.selection.SelectionManager;
  * 
  * @author Aaron Tetens
  */
-public class BoardEditor extends JPanel {
+class BoardEditor extends JPanel {
 
 	private static final long serialVersionUID = -1135127351978142227L;
 	private static final int BOARD_SIZE = 900;
