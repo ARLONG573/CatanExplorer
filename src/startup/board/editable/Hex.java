@@ -9,7 +9,8 @@ import startup.board.data.selectable.HexResource;
 import utils.GeometryUtils;
 
 /**
- * This class represents a drawable hex on the startup board editor.
+ * This class represents a drawable hex on the startup board editor. Each hex is
+ * responsible for handling its own port (if it has one).
  * 
  * @author Aaron Tetens
  */

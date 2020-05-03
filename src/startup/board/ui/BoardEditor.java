@@ -133,8 +133,12 @@ class BoardEditor extends JPanel {
 	protected void paintComponent(final Graphics g) {
 		super.paintComponent(g);
 
+		// only draw hexes, since each hex is responsible for drawing the port attached
+		// to it (if it has one)
 		for (final Editable editable : this.editables) {
-			editable.draw(g);
+			if (editable instanceof Hex) {
+				((Hex) editable).draw(g);
+			}
 		}
 	}
 }
