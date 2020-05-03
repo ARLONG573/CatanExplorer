@@ -21,7 +21,7 @@ public class Port implements Editable {
 	public static final int LEFT = 6;
 
 	// port thickness
-	private static final int WIDTH = Hex.RADIUS / 2;
+	public static final int WIDTH = Hex.RADIUS / 2;
 
 	// horizontal distance from hex point to port point (angled cases only)
 	private static final int X_DIST = (int) (WIDTH * Math.sqrt(3) / 3);
@@ -154,7 +154,6 @@ public class Port implements Editable {
 		// outline
 		g.setColor(Color.BLACK);
 		g.drawPolygon(this.xPoints, this.yPoints, this.nPoints);
-
 	}
 
 	@Override
@@ -162,5 +161,4 @@ public class Port implements Editable {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 }

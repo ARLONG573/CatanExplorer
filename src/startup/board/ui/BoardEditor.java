@@ -2,6 +2,8 @@ package startup.board.ui;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,13 +12,14 @@ import javax.swing.JPanel;
 import startup.board.editable.Editable;
 import startup.board.editable.Hex;
 import startup.board.editable.Port;
+import startup.board.selection.SelectionManager;
 
 /**
  * This is the panel that displays the editable board components.
  * 
  * @author Aaron Tetens
  */
-class BoardEditor extends JPanel {
+public class BoardEditor extends JPanel {
 
 	private static final long serialVersionUID = -1135127351978142227L;
 	private static final int BOARD_SIZE = 900;
@@ -30,12 +33,46 @@ class BoardEditor extends JPanel {
 
 		this.editables = new HashSet<>();
 		this.addEditables();
+
+		// when the panel is clicked, check to see if the click lies within the bounds
+		// of any of the editables
+
+		// if it does, set the editable appropriately and repaint
+		super.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(final MouseEvent e) {
+				final int x = e.getX();
+				final int y = e.getY();
+
+				BoardEditor.getInstance().onClick(x, y);
+			}
+		});
+	}
+
+	/**
+	 * This method is called whenever the panel is clicked. If the click lies within
+	 * the bounds of any of the editables, that editable is updated and the editor
+	 * panel is repainted.
+	 * 
+	 * @param x
+	 *            The x-coordinate of the click
+	 * @param y
+	 *            The y-coordinate of the click
+	 */
+	private void onClick(final int x, final int y) {
+		for (final Editable editable : this.editables) {
+			if (editable.containsPoint(x, y)) {
+				SelectionManager.getInstance().sendSelection(editable);
+				super.repaint();
+				break;
+			}
+		}
 	}
 
 	/**
 	 * @return The BoardEditor instance
 	 */
-	static BoardEditor getInstance() {
+	public static BoardEditor getInstance() {
 		if (theInstance == null) {
 			theInstance = new BoardEditor();
 		}
