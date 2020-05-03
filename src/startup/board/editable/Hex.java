@@ -15,13 +15,13 @@ import startup.board.data.selectable.HexResource;
 public class Hex implements Editable {
 
 	// distance from center to any point
-	public static final int HEX_RADIUS = 75;
+	public static final int RADIUS = 75;
 
 	// horizontal distance from center to left/right edge
-	public static final int X_DIST = (int) (HEX_RADIUS * Math.sqrt(3) / 2);
+	public static final int X_DIST = (int) (RADIUS * Math.sqrt(3) / 2);
 
 	// vertical distance from center to any of the four side points
-	public static final int Y_DIST = (int) (HEX_RADIUS / 2);
+	public static final int Y_DIST = (int) (RADIUS / 2);
 
 	private final int[] xPoints;
 	private final int[] yPoints;
@@ -56,10 +56,10 @@ public class Hex implements Editable {
 		this.xPoints[4] = this.x - X_DIST;
 		this.xPoints[5] = this.x - X_DIST;
 
-		this.yPoints[0] = this.y - HEX_RADIUS;
+		this.yPoints[0] = this.y - RADIUS;
 		this.yPoints[1] = this.y - Y_DIST;
 		this.yPoints[2] = this.y + Y_DIST;
-		this.yPoints[3] = this.y + HEX_RADIUS;
+		this.yPoints[3] = this.y + RADIUS;
 		this.yPoints[4] = this.y + Y_DIST;
 		this.yPoints[5] = this.y - Y_DIST;
 
@@ -114,9 +114,22 @@ public class Hex implements Editable {
 		return this.port;
 	}
 
+	/**
+	 * @return The x-coordinate of the center of this hex
+	 */
+	int getX() {
+		return this.x;
+	}
+
+	/**
+	 * @return The y-coordinate of the center of this hex
+	 */
+	int getY() {
+		return this.y;
+	}
+
 	@Override
 	public void draw(final Graphics g) {
-		this.setNumber(HexNumber.TWELVE);
 		// fill
 		g.setColor(this.resource.getBackgroundColor());
 		g.fillPolygon(this.xPoints, this.yPoints, this.nPoints);

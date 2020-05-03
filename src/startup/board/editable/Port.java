@@ -20,6 +20,15 @@ public class Port implements Editable {
 	public static final int BOTTOM_LEFT = 5;
 	public static final int LEFT = 6;
 
+	// port thickness
+	private static final int WIDTH = Hex.RADIUS / 2;
+
+	// horizontal distance from hex point to port point (angled cases only)
+	private static final int X_DIST = (int) (WIDTH * Math.sqrt(3) / 3);
+
+	// vertical distance from hex point to port point (angled cases only)
+	private static final int Y_DIST = WIDTH / 2;
+
 	private final int[] xPoints;
 	private final int[] yPoints;
 	private final int nPoints;
@@ -41,18 +50,81 @@ public class Port implements Editable {
 		this.yPoints = new int[nPoints];
 
 		if (hex != null) {
+			final int hexX = hex.getX();
+			final int hexY = hex.getY();
+
 			switch (position) {
 			case TOP_LEFT:
+				this.xPoints[0] = hexX - Hex.X_DIST - X_DIST;
+				this.xPoints[1] = hexX - X_DIST;
+				this.xPoints[2] = hexX;
+				this.xPoints[3] = hexX - Hex.X_DIST;
+
+				this.yPoints[0] = hexY - Hex.Y_DIST - Y_DIST;
+				this.yPoints[1] = hexY - Hex.RADIUS - Y_DIST;
+				this.yPoints[2] = hexY - Hex.RADIUS;
+				this.yPoints[3] = hexY - Hex.Y_DIST;
+
 				break;
 			case TOP_RIGHT:
+				this.xPoints[0] = hexX + X_DIST;
+				this.xPoints[1] = hexX + Hex.X_DIST + X_DIST;
+				this.xPoints[2] = hexX + Hex.X_DIST;
+				this.xPoints[3] = hexX;
+
+				this.yPoints[0] = hexY - Hex.RADIUS - Y_DIST;
+				this.yPoints[1] = hexY - Hex.Y_DIST - Y_DIST;
+				this.yPoints[2] = hexY - Hex.Y_DIST;
+				this.yPoints[3] = hexY - Hex.RADIUS;
+
 				break;
 			case RIGHT:
+				this.xPoints[0] = hexX + Hex.X_DIST;
+				this.xPoints[1] = hexX + Hex.X_DIST + WIDTH;
+				this.xPoints[2] = hexX + Hex.X_DIST + WIDTH;
+				this.xPoints[3] = hexX + Hex.X_DIST;
+
+				this.yPoints[0] = hexY - Hex.Y_DIST;
+				this.yPoints[1] = hexY - Hex.Y_DIST;
+				this.yPoints[2] = hexY + Hex.Y_DIST;
+				this.yPoints[3] = hexY + Hex.Y_DIST;
+
 				break;
 			case BOTTOM_RIGHT:
+				this.xPoints[0] = hexX + Hex.X_DIST;
+				this.xPoints[1] = hexX + Hex.X_DIST + X_DIST;
+				this.xPoints[2] = hexX + X_DIST;
+				this.xPoints[3] = hexX;
+
+				this.yPoints[0] = hexY + Hex.Y_DIST;
+				this.yPoints[1] = hexY + Hex.Y_DIST + Y_DIST;
+				this.yPoints[2] = hexY + Hex.RADIUS + Y_DIST;
+				this.yPoints[3] = hexY + Hex.RADIUS;
+
 				break;
 			case BOTTOM_LEFT:
+				this.xPoints[0] = hexX - Hex.X_DIST;
+				this.xPoints[1] = hexX;
+				this.xPoints[2] = hexX - X_DIST;
+				this.xPoints[3] = hexX - Hex.X_DIST - X_DIST;
+
+				this.yPoints[0] = hexY + Hex.Y_DIST;
+				this.yPoints[1] = hexY + Hex.RADIUS;
+				this.yPoints[2] = hexY + Hex.RADIUS + Y_DIST;
+				this.yPoints[3] = hexY + Hex.Y_DIST + Y_DIST;
+
 				break;
 			case LEFT:
+				this.xPoints[0] = hexX - Hex.X_DIST - WIDTH;
+				this.xPoints[1] = hexX - Hex.X_DIST;
+				this.xPoints[2] = hexX - Hex.X_DIST;
+				this.xPoints[3] = hexX - Hex.X_DIST - WIDTH;
+
+				this.yPoints[0] = hexY - Hex.Y_DIST;
+				this.yPoints[1] = hexY - Hex.Y_DIST;
+				this.yPoints[2] = hexY + Hex.Y_DIST;
+				this.yPoints[3] = hexY + Hex.Y_DIST;
+
 				break;
 			}
 		}
@@ -75,7 +147,6 @@ public class Port implements Editable {
 
 	@Override
 	public void draw(final Graphics g) {
-		this.setType(PortType.SHEEP_PORT);
 		// fill
 		g.setColor(this.type.getBackgroundColor());
 		g.fillPolygon(this.xPoints, this.yPoints, this.nPoints);
