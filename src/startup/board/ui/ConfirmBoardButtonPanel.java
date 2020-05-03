@@ -24,6 +24,11 @@ class ConfirmBoardButtonPanel extends JPanel {
 		super(new BorderLayout());
 
 		this.confirmBoardButton = new JButton(CONFIRM_BOARD_BUTTON_TEXT);
+		this.confirmBoardButton.addActionListener((e) -> {
+			// TODO
+			System.out.println("Confirm Board");
+		});
+
 		super.add(this.confirmBoardButton, BorderLayout.EAST);
 	}
 

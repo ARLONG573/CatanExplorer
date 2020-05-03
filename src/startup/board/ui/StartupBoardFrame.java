@@ -20,7 +20,6 @@ public class StartupBoardFrame extends JFrame {
 		super.setLayout(new BorderLayout());
 		super.add(BoardEditor.getInstance(), BorderLayout.CENTER);
 		super.add(BoardToolbar.getInstance(), BorderLayout.EAST);
-		super.setLocationRelativeTo(null);
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		super.pack();
 	}

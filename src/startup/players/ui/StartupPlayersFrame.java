@@ -20,7 +20,6 @@ public class StartupPlayersFrame extends JFrame {
 		super.add(NumPlayersPanel.getInstance(), BorderLayout.NORTH);
 		super.add(PlayerEntriesPanel.getInstance(), BorderLayout.CENTER);
 		super.add(ConfirmPlayersButtonPanel.getInstance(), BorderLayout.SOUTH);
-		super.setLocationRelativeTo(null);
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		super.pack();
 	}

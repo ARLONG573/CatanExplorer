@@ -3,6 +3,7 @@ package startup.board.ui;
 import javax.swing.JButton;
 
 import startup.board.data.selectable.Selectable;
+import startup.board.selection.SelectionManager;
 
 /**
  * This is a button that the users clicks to select the board element that they
@@ -25,7 +26,7 @@ class SelectionButton extends JButton {
 			super.setBackground(selectable.getBackgroundColor());
 			super.setText(selectable.toString());
 
-			super.addActionListener((e) -> System.out.println("Selected " + selectable));
+			super.addActionListener((e) -> SelectionManager.getInstance().setSelection(selectable));
 		}
 	}
 }

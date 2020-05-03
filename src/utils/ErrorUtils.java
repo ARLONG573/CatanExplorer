@@ -2,6 +2,11 @@ package utils;
 
 import javax.swing.JOptionPane;
 
+/**
+ * This class contains static utility methods for displaying errors.
+ * 
+ * @author Aaron Tetens
+ */
 public class ErrorUtils {
 
 	private static final String ERROR_TITLE = "Error";
