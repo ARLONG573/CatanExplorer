@@ -22,8 +22,8 @@ public class GeometryUtils {
 
 		final double m = (y2 - y1) / (double) (x2 - x1);
 
-		// (x2, y2) is chosen arbitrarily, either point works
+		// (x1, y1) is chosen arbitrarily, either point works
 		// use less than because Swing origin is in top-left
-		return y < y2 + m * (x - x2);
+		return y < y1 + m * (x - x1);
 	}
 }
