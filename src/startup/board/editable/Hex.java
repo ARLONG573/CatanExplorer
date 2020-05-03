@@ -157,6 +157,6 @@ public class Hex implements Editable {
 	@Override
 	public boolean containsPoint(final int clickX, final int clickY) {
 		// TODO
-		return false;
+		return true;
 	}
 }

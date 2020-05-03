@@ -34,32 +34,28 @@ public class BoardEditor extends JPanel {
 		this.editables = new HashSet<>();
 		this.addEditables();
 
-		// when the panel is clicked, check to see if the click lies within the bounds
-		// of any of the editables
-
-		// if it does, set the editable appropriately and repaint
 		super.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(final MouseEvent e) {
+			public void mousePressed(final MouseEvent e) {
 				final int x = e.getX();
 				final int y = e.getY();
 
-				BoardEditor.getInstance().onClick(x, y);
+				BoardEditor.getInstance().onMousePress(x, y);
 			}
 		});
 	}
 
 	/**
-	 * This method is called whenever the panel is clicked. If the click lies within
-	 * the bounds of any of the editables, that editable is updated and the editor
-	 * panel is repainted.
+	 * This method is called whenever the mouse is pressed on the panel. If the
+	 * press lies within the bounds of any of the editables, that editable is
+	 * updated and the editor panel is repainted.
 	 * 
 	 * @param x
-	 *            The x-coordinate of the click
+	 *            The x-coordinate of the mouse press
 	 * @param y
-	 *            The y-coordinate of the click
+	 *            The y-coordinate of the mouse press
 	 */
-	private void onClick(final int x, final int y) {
+	private void onMousePress(final int x, final int y) {
 		for (final Editable editable : this.editables) {
 			if (editable.containsPoint(x, y)) {
 				SelectionManager.getInstance().sendSelection(editable);
@@ -132,6 +128,8 @@ public class BoardEditor extends JPanel {
 
 	@Override
 	protected void paintComponent(final Graphics g) {
+		super.paintComponent(g);
+
 		for (final Editable editable : this.editables) {
 			editable.draw(g);
 		}
