@@ -6,6 +6,7 @@ import java.awt.Graphics;
 
 import startup.board.data.selectable.HexNumber;
 import startup.board.data.selectable.HexResource;
+import utils.GeometryUtils;
 
 /**
  * This class represents a drawable hex on the startup board editor.
@@ -163,45 +164,30 @@ public class Hex implements Editable {
 
 		// y equations
 		// top left
-		if (this.pointIsOverLine(clickX, clickY, 5, 0)) {
+		if (GeometryUtils.isPointAboveLine(clickX, clickY, this.xPoints[5], this.yPoints[5], this.xPoints[0],
+				this.yPoints[0])) {
+
 			return false;
 		}
 		// top right
-		if (this.pointIsOverLine(clickX, clickY, 0, 1)) {
+		if (GeometryUtils.isPointAboveLine(clickX, clickY, this.xPoints[0], this.yPoints[0], this.xPoints[1],
+				this.yPoints[1])) {
+
 			return false;
 		}
 		// bottom right
-		if (!this.pointIsOverLine(clickX, clickY, 2, 3)) {
+		if (!GeometryUtils.isPointAboveLine(clickX, clickY, this.xPoints[2], this.yPoints[2], this.xPoints[3],
+				this.yPoints[3])) {
+
 			return false;
 		}
 		// bottom left
-		if (!this.pointIsOverLine(clickX, clickY, 3, 4)) {
+		if (!GeometryUtils.isPointAboveLine(clickX, clickY, this.xPoints[3], this.yPoints[3], this.xPoints[4],
+				this.yPoints[4])) {
+
 			return false;
 		}
 
 		return true;
-	}
-
-	/**
-	 * @param x
-	 * @param y
-	 * @param p1Index
-	 * @param p2Index
-	 * @return Whether or not the point (x, y) is over the line created by the
-	 *         points (xPoints[p1Index], yPoints[p1Index]) and (xPoints[p2Index],
-	 *         yPoints[p2Index])
-	 */
-	private boolean pointIsOverLine(final int x, final int y, final int p1Index, final int p2Index) {
-		final int x1 = this.xPoints[p1Index];
-		final int y1 = this.yPoints[p1Index];
-
-		final int x2 = this.xPoints[p2Index];
-		final int y2 = this.yPoints[p2Index];
-
-		final double m = (y2 - y1) / (double) (x2 - x1);
-
-		// (x2, y2) is chosen arbitrarily, either point works
-		// use less than because Swing origin is in top-left
-		return y < y2 + m * (x - x2);
 	}
 }
