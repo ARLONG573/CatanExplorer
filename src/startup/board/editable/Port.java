@@ -159,6 +159,6 @@ public class Port implements Editable {
 	@Override
 	public boolean containsPoint(final int clickX, int clickY) {
 		// TODO Auto-generated method stub
-		return true;
+		return false;
 	}
 }

@@ -156,7 +156,52 @@ public class Hex implements Editable {
 
 	@Override
 	public boolean containsPoint(final int clickX, final int clickY) {
-		// TODO
+		// x equations
+		if (clickX < this.x - X_DIST || clickX > this.x + X_DIST) {
+			return false;
+		}
+
+		// y equations
+		// top left
+		if (this.pointIsOverLine(clickX, clickY, 5, 0)) {
+			return false;
+		}
+		// top right
+		if (this.pointIsOverLine(clickX, clickY, 0, 1)) {
+			return false;
+		}
+		// bottom right
+		if (!this.pointIsOverLine(clickX, clickY, 2, 3)) {
+			return false;
+		}
+		// bottom left
+		if (!this.pointIsOverLine(clickX, clickY, 3, 4)) {
+			return false;
+		}
+
 		return true;
+	}
+
+	/**
+	 * @param x
+	 * @param y
+	 * @param p1Index
+	 * @param p2Index
+	 * @return Whether or not the point (x, y) is over the line created by the
+	 *         points (xPoints[p1Index], yPoints[p1Index]) and (xPoints[p2Index],
+	 *         yPoints[p2Index])
+	 */
+	private boolean pointIsOverLine(final int x, final int y, final int p1Index, final int p2Index) {
+		final int x1 = this.xPoints[p1Index];
+		final int y1 = this.yPoints[p1Index];
+
+		final int x2 = this.xPoints[p2Index];
+		final int y2 = this.yPoints[p2Index];
+
+		final double m = (y2 - y1) / (double) (x2 - x1);
+
+		// (x2, y2) is chosen arbitrarily, either point works
+		// use less than because Swing origin is in top-left
+		return y < y2 + m * (x - x2);
 	}
 }

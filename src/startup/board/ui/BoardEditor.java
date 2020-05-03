@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import startup.board.editable.Editable;
 import startup.board.editable.Hex;
@@ -37,10 +38,12 @@ public class BoardEditor extends JPanel {
 		super.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(final MouseEvent e) {
-				final int x = e.getX();
-				final int y = e.getY();
+				if (SwingUtilities.isLeftMouseButton(e)) {
+					final int x = e.getX();
+					final int y = e.getY();
 
-				BoardEditor.getInstance().onMousePress(x, y);
+					BoardEditor.getInstance().onMousePress(x, y);
+				}
 			}
 		});
 	}
