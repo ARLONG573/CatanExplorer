@@ -28,7 +28,6 @@ class ConfirmPlayersButtonPanel extends JPanel {
 
 		this.confirmButton = new JButton(CONFIRM_PLAYERS_BUTTON_TEXT);
 		this.confirmButton.addActionListener((evt) -> {
-			// only launch the board editor if the player entries are valid
 			if (PlayerEntriesPanel.getInstance().hasValidEntries()) {
 				// instead of creating the player data and disposing of the player frame now, we
 				// will accumulate all of the data at once and dispose of both frames after

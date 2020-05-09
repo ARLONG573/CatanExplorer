@@ -5,6 +5,8 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import utils.ErrorUtils;
+
 /**
  * This panel holds the confirm button for the board editor. The confirm
  * button's action listener is responsible for validating the board state.
@@ -25,8 +27,10 @@ class ConfirmBoardButtonPanel extends JPanel {
 
 		this.confirmBoardButton = new JButton(CONFIRM_BOARD_BUTTON_TEXT);
 		this.confirmBoardButton.addActionListener((e) -> {
-			// TODO
-			System.out.println("Confirm Board");
+			if (BoardEditor.getInstance().hasValidConfiguration()) {
+				ErrorUtils.displayErrorMessage("Board Verified");
+				// TODO store initial game state from the two startup screens
+			}
 		});
 
 		super.add(this.confirmBoardButton, BorderLayout.EAST);

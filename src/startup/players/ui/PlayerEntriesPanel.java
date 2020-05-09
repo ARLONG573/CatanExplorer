@@ -98,34 +98,6 @@ class PlayerEntriesPanel extends JPanel {
 	}
 
 	/**
-	 * @return An array containing the names of the players, in the order they
-	 *         appear on the screen
-	 */
-	String[] getPlayerNames() {
-		final String[] playerNames = new String[this.playerEntryPanels.size()];
-
-		for (int i = 0; i < this.playerEntryPanels.size(); i++) {
-			playerNames[i] = this.playerEntryPanels.get(i).getPlayerName();
-		}
-
-		return playerNames;
-	}
-
-	/**
-	 * @return An array containing the colors of the players, in the order they
-	 *         appear on the screen
-	 */
-	PlayerColor[] getPlayerColors() {
-		final PlayerColor[] playerColors = new PlayerColor[this.playerEntryPanels.size()];
-
-		for (int i = 0; i < this.playerEntryPanels.size(); i++) {
-			playerColors[i] = this.playerEntryPanels.get(i).getPlayerColor();
-		}
-
-		return playerColors;
-	}
-
-	/**
 	 * The entry fields are considered valid if none of the names are empty and
 	 * there are no duplicate names or colors.
 	 * 
@@ -167,6 +139,34 @@ class PlayerEntriesPanel extends JPanel {
 		}
 
 		return true;
+	}
+
+	/**
+	 * @return An array containing the names of the players, in the order they
+	 *         appear on the screen
+	 */
+	private String[] getPlayerNames() {
+		final String[] playerNames = new String[this.playerEntryPanels.size()];
+
+		for (int i = 0; i < this.playerEntryPanels.size(); i++) {
+			playerNames[i] = this.playerEntryPanels.get(i).getPlayerName();
+		}
+
+		return playerNames;
+	}
+
+	/**
+	 * @return An array containing the colors of the players, in the order they
+	 *         appear on the screen
+	 */
+	private PlayerColor[] getPlayerColors() {
+		final PlayerColor[] playerColors = new PlayerColor[this.playerEntryPanels.size()];
+
+		for (int i = 0; i < this.playerEntryPanels.size(); i++) {
+			playerColors[i] = this.playerEntryPanels.get(i).getPlayerColor();
+		}
+
+		return playerColors;
 	}
 
 	/**

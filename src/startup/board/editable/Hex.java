@@ -97,6 +97,20 @@ public class Hex implements Editable {
 	}
 
 	/**
+	 * @return The current resource of this hex in the board editor.
+	 */
+	public HexResource getResource() {
+		return this.resource;
+	}
+
+	/**
+	 * @return The current number of this hex in the board editor.
+	 */
+	public HexNumber getNumber() {
+		return this.number;
+	}
+
+	/**
 	 * @param position
 	 *            Where on the hex the port is located; should be one of the static
 	 *            constants in the Port class.
