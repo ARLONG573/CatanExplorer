@@ -1,12 +1,15 @@
 package startup.players.ui;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import startup.players.data.PlayerColor;
+import utils.ErrorUtils;
 
 /**
  * This is the panel that holds the components that are necessary for entering
@@ -21,6 +24,10 @@ class PlayerEntriesPanel extends JPanel {
 	private static final int MAX_PLAYERS = 4;
 	private static final int DEFAULT_NUM_PLAYERS = 4;
 	private static final String NUM_PLAYERS_ERROR = "Number of players must be 3 or 4";
+	private static final String EMPTY_NAME_ERROR = "All players must have names";
+	private static final String DUPLICATE_NAME_ERROR = "No two players can have the same name";
+	private static final String DUPLICATE_COLOR_ERROR = "No two players can have the same color";
+	private static final String NULL_OBJECT_ERROR = "Received null objects during verification";
 
 	private final List<PlayerEntryPanel> playerEntryPanels;
 
@@ -105,7 +112,7 @@ class PlayerEntriesPanel extends JPanel {
 	}
 
 	/**
-	 * @return An array containing the colors of the playres, in the order they
+	 * @return An array containing the colors of the players, in the order they
 	 *         appear on the screen
 	 */
 	PlayerColor[] getPlayerColors() {
@@ -116,5 +123,81 @@ class PlayerEntriesPanel extends JPanel {
 		}
 
 		return playerColors;
+	}
+
+	/**
+	 * The entry fields are considered valid if none of the names are empty and
+	 * there are no duplicate names or colors.
+	 * 
+	 * @return Whether or not the player entry fields have valid data that we can
+	 *         use to set up a game.
+	 */
+	boolean hasValidEntries() {
+		final String[] playerNames = this.getPlayerNames();
+		final PlayerColor[] playerColors = this.getPlayerColors();
+
+		// check for empty names
+		for (final String playerName : playerNames) {
+			if (playerName == null || playerName.isEmpty()) {
+				ErrorUtils.displayErrorMessage(EMPTY_NAME_ERROR);
+				return false;
+			}
+		}
+
+		// check for duplicate name
+		try {
+			if (this.containsDuplicate(playerNames)) {
+				ErrorUtils.displayErrorMessage(DUPLICATE_NAME_ERROR);
+				return false;
+			}
+		} catch (final IllegalArgumentException e) {
+			ErrorUtils.displayErrorMessage(e.getMessage());
+			return false;
+		}
+
+		// check for duplicate color
+		try {
+			if (this.containsDuplicate(playerColors)) {
+				ErrorUtils.displayErrorMessage(DUPLICATE_COLOR_ERROR);
+				return false;
+			}
+		} catch (final IllegalArgumentException e) {
+			ErrorUtils.displayErrorMessage(e.getMessage());
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * A duplicate is defined as two objects A and B such that Objects.equals(A, B)
+	 * returns true.
+	 * 
+	 * @param arr
+	 *            The array to check
+	 * @return Whether or not the array contains a duplicate
+	 * @throws IllegalArgumentException
+	 *             If arr contains a null object
+	 */
+	private boolean containsDuplicate(final Object[] arr) throws IllegalArgumentException {
+		if (arr == null) {
+			return false;
+		}
+
+		final Set<Object> cache = new HashSet<>();
+
+		for (final Object obj : arr) {
+			if (obj == null) {
+				throw new IllegalArgumentException(NULL_OBJECT_ERROR);
+			}
+
+			if (cache.contains(obj)) {
+				return true;
+			}
+
+			cache.add(obj);
+		}
+
+		return false;
 	}
 }
