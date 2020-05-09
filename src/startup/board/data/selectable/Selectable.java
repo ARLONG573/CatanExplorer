@@ -14,4 +14,9 @@ public interface Selectable {
 	 * @return The background color of the visual representation of this Selectable
 	 */
 	public Color getBackgroundColor();
+
+	/**
+	 * @return How many of this item there should be on the board.
+	 */
+	public int getExpectedAmount();
 }

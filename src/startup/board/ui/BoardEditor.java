@@ -10,10 +10,15 @@ import java.util.Set;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import startup.board.data.selectable.HexNumber;
+import startup.board.data.selectable.HexResource;
+import startup.board.data.selectable.PortType;
+import startup.board.data.structures.FrequencyMap;
 import startup.board.editable.Editable;
 import startup.board.editable.Hex;
 import startup.board.editable.Port;
 import startup.board.selection.SelectionManager;
+import utils.ErrorUtils;
 
 /**
  * This is the panel that displays the editable board components.
@@ -24,6 +29,10 @@ class BoardEditor extends JPanel {
 
 	private static final long serialVersionUID = -1135127351978142227L;
 	private static final int BOARD_SIZE = 900;
+	private static final String RESOURCE_CONFIGURATION_ERROR = "Invalid resource distribution";
+	private static final String NUMBER_CONFIGURATION_ERROR = "Invalid number distribution";
+	private static final String PORT_CONFIGURATION_ERROR = "Invalid port distribution";
+	private static final String INVALID_DESERT_ERROR = "The desert cannot have a number on it";
 
 	private static BoardEditor theInstance;
 
@@ -127,6 +136,92 @@ class BoardEditor extends JPanel {
 		}
 
 		this.editables.addAll(ports);
+	}
+
+	/**
+	 * The board editor's configuration is valid if it meets all of the following
+	 * criteria:
+	 * 
+	 * Numbers - One 2, one 12, and two of every other possible hex number. Hexes -
+	 * Three ore, three brick, four sheep, four wood, four wheat, and one desert.
+	 * Ports - Five 3:1, and one of each of the 2:1.
+	 * 
+	 * It must also be the case that the desert does not have a number.
+	 * 
+	 * @return Whether or not the current configuration of the board editor can be
+	 *         used to set up a game.
+	 */
+	boolean hasValidConfiguration() {
+		final FrequencyMap<HexResource> resourceFreqs = new FrequencyMap<>();
+		final FrequencyMap<HexNumber> numberFreqs = new FrequencyMap<>();
+		final FrequencyMap<PortType> portFreqs = new FrequencyMap<>();
+
+		for (final Editable editable : this.editables) {
+			if (editable instanceof Hex) {
+				final Hex hex = (Hex) editable;
+
+				resourceFreqs.add(hex.getResource());
+				numberFreqs.add(hex.getNumber());
+			} else if (editable instanceof Port) {
+				final Port port = (Port) editable;
+
+				portFreqs.add(port.getType());
+			}
+		}
+
+		// verify resource distribution
+		// check that all resources are present
+		if (resourceFreqs.size() != HexResource.NUM_RESOURCES) {
+			ErrorUtils.displayErrorMessage(RESOURCE_CONFIGURATION_ERROR);
+			return false;
+		}
+		// check that all resources have correct amount
+		if (!resourceFreqs.isValid()) {
+			ErrorUtils.displayErrorMessage(RESOURCE_CONFIGURATION_ERROR);
+			return false;
+		}
+
+		// verify number distribution
+		// check that all numbers are present
+		if (numberFreqs.size() != HexNumber.NUM_NUMBERS) {
+			ErrorUtils.displayErrorMessage(NUMBER_CONFIGURATION_ERROR);
+			return false;
+		}
+		// check that all numbers have correct amount
+		if (!numberFreqs.isValid()) {
+			ErrorUtils.displayErrorMessage(NUMBER_CONFIGURATION_ERROR);
+			return false;
+		}
+
+		// verify port distribution
+		// check that all ports are present
+		if (portFreqs.size() != PortType.NUM_PORTS) {
+			ErrorUtils.displayErrorMessage(PORT_CONFIGURATION_ERROR);
+			return false;
+		}
+		// check that all ports have correct amount
+		if (!portFreqs.isValid()) {
+			ErrorUtils.displayErrorMessage(PORT_CONFIGURATION_ERROR);
+			return false;
+		}
+
+		// find the desert and verify that it does not have a number on it
+		for (final Editable editable : this.editables) {
+			if (editable instanceof Hex) {
+				final Hex hex = (Hex) editable;
+
+				if (hex.getResource() == HexResource.DESERT) {
+					if (hex.getNumber() != HexNumber.NONE) {
+						ErrorUtils.displayErrorMessage(INVALID_DESERT_ERROR);
+						return false;
+					}
+
+					break;
+				}
+			}
+		}
+
+		return true;
 	}
 
 	@Override

@@ -150,6 +150,13 @@ public class Port implements Editable {
 		}
 	}
 
+	/**
+	 * @return The current type of this port in the board editor.
+	 */
+	public PortType getType() {
+		return this.type;
+	}
+
 	@Override
 	public void draw(final Graphics g) {
 		// fill
