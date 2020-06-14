@@ -1,14 +1,13 @@
 package startup.players.ui;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import startup.players.data.PlayerColor;
+import utils.ArrayUtils;
 import utils.ErrorUtils;
 
 /**
@@ -27,7 +26,6 @@ class PlayerEntriesPanel extends JPanel {
 	private static final String EMPTY_NAME_ERROR = "All players must have names";
 	private static final String DUPLICATE_NAME_ERROR = "No two players can have the same name";
 	private static final String DUPLICATE_COLOR_ERROR = "No two players can have the same color";
-	private static final String NULL_OBJECT_ERROR = "Received null objects during verification";
 
 	private final List<PlayerEntryPanel> playerEntryPanels;
 
@@ -118,7 +116,7 @@ class PlayerEntriesPanel extends JPanel {
 
 		// check for duplicate name
 		try {
-			if (this.containsDuplicate(playerNames)) {
+			if (ArrayUtils.containsDuplicate(playerNames)) {
 				ErrorUtils.displayErrorMessage(DUPLICATE_NAME_ERROR);
 				return false;
 			}
@@ -129,7 +127,7 @@ class PlayerEntriesPanel extends JPanel {
 
 		// check for duplicate color
 		try {
-			if (this.containsDuplicate(playerColors)) {
+			if (ArrayUtils.containsDuplicate(playerColors)) {
 				ErrorUtils.displayErrorMessage(DUPLICATE_COLOR_ERROR);
 				return false;
 			}
@@ -167,37 +165,5 @@ class PlayerEntriesPanel extends JPanel {
 		}
 
 		return playerColors;
-	}
-
-	/**
-	 * A duplicate is defined as two objects A and B such that Objects.equals(A, B)
-	 * returns true.
-	 * 
-	 * @param arr
-	 *            The array to check
-	 * @return Whether or not the array contains a duplicate
-	 * @throws IllegalArgumentException
-	 *             If arr contains a null object
-	 */
-	private boolean containsDuplicate(final Object[] arr) throws IllegalArgumentException {
-		if (arr == null) {
-			return false;
-		}
-
-		final Set<Object> cache = new HashSet<>();
-
-		for (final Object obj : arr) {
-			if (obj == null) {
-				throw new IllegalArgumentException(NULL_OBJECT_ERROR);
-			}
-
-			if (cache.contains(obj)) {
-				return true;
-			}
-
-			cache.add(obj);
-		}
-
-		return false;
 	}
 }
