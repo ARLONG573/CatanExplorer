@@ -1,9 +1,9 @@
-package game.state;
+package game.state.moves;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import game.state.moves.Move;
+import game.state.State;
 
 /**
  * This class is responsible for performing some sequence of moves on a given

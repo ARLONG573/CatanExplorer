@@ -1,7 +1,6 @@
 package game.state.moves;
 
 import game.state.State;
-import game.state.Turn;
 
 /**
  * A move is defined as some operation on a game state. Each move should
