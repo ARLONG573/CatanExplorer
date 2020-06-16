@@ -3,36 +3,28 @@ package game.state;
 import java.util.ArrayList;
 import java.util.List;
 
-import game.state.moves.EndTurnMove;
 import game.state.moves.Move;
 
 /**
  * This class is responsible for performing some sequence of moves on a given
- * state. Every turn's final move is ending the turn (aka passing the dice).
+ * state.
  * 
  * @author Aaron Tetens
  */
 public class Turn {
 
-	private static final String ILLEGAL_MOVES_ERROR = "A turn must consist of one or more moves and end with an end turn move";
+	private static final String ILLEGAL_MOVES_ERROR = "A turn must consist of one or more moves";
 
 	private final List<Move> moves;
 
 	/**
-	 * Creates a new Turn that consists of the given list of moves. The final move
-	 * must be ending the turn.
+	 * Creates a new Turn that consists of the given list of moves.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             If the final move is not ending the turn.
+	 *             If the given list of moves is null or empty
 	 */
 	public Turn(final List<Move> moves) throws IllegalArgumentException {
 		if (moves == null || moves.isEmpty()) {
-			throw new IllegalArgumentException(ILLEGAL_MOVES_ERROR);
-		}
-
-		final Move finalMove = moves.get(moves.size() - 1);
-
-		if (!(finalMove instanceof EndTurnMove)) {
 			throw new IllegalArgumentException(ILLEGAL_MOVES_ERROR);
 		}
 
