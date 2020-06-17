@@ -13,21 +13,9 @@ import game.state.State;
  */
 public class Turn {
 
-	private static final String ILLEGAL_MOVES_ERROR = "A turn must consist of one or more moves";
-
 	private final List<Move> moves;
 
-	/**
-	 * Creates a new Turn that consists of the given list of moves.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the given list of moves is null or empty
-	 */
-	public Turn(final List<Move> moves) throws IllegalArgumentException {
-		if (moves == null || moves.isEmpty()) {
-			throw new IllegalArgumentException(ILLEGAL_MOVES_ERROR);
-		}
-
+	public Turn(final List<Move> moves) {
 		this.moves = new ArrayList<>(moves);
 	}
 

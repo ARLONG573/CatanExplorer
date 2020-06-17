@@ -11,8 +11,6 @@ import java.util.Set;
  */
 public class ArrayUtils {
 
-	private static final String NULL_OBJECT_ERROR = "Array contains null object";
-
 	/**
 	 * A duplicate is defined as two objects A and B such that Objects.equals(A, B)
 	 * returns true.
@@ -20,10 +18,8 @@ public class ArrayUtils {
 	 * @param arr
 	 *            The array to check
 	 * @return Whether or not the array contains a duplicate
-	 * @throws IllegalArgumentException
-	 *             If arr contains a null object
 	 */
-	public static boolean containsDuplicate(final Object[] arr) throws IllegalArgumentException {
+	public static boolean containsDuplicate(final Object[] arr) {
 		if (arr == null) {
 			return false;
 		}
@@ -31,10 +27,6 @@ public class ArrayUtils {
 		final Set<Object> cache = new HashSet<>();
 
 		for (final Object obj : arr) {
-			if (obj == null) {
-				throw new IllegalArgumentException(NULL_OBJECT_ERROR);
-			}
-
 			if (cache.contains(obj)) {
 				return true;
 			}
