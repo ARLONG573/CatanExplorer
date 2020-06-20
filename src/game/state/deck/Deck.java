@@ -8,4 +8,11 @@ package game.state.deck;
  */
 public class Deck {
 
+	/**
+	 * @return A copy of this deck that can be modified without affecting this one
+	 */
+	public Deck copy() {
+		// TODO once member variables are implemented
+		return null;
+	}
 }

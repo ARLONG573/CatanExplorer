@@ -7,4 +7,11 @@ package game.state.player;
  */
 public class Player {
 
+	/**
+	 * @return A copy of this player that can be modified without affecting this one
+	 */
+	public Player copy() {
+		// TODO once member variables are implemented
+		return null;
+	}
 }
