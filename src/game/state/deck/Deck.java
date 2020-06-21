@@ -12,6 +12,8 @@ public class Deck {
 
 	private static final int INITIAL_CARD_COUNT = 25;
 
+	// UI variables - consider refactoring if additional member variables make these
+	// variables redundant
 	private int numCardsRemaining;
 
 	/**
