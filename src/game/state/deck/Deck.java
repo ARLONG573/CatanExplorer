@@ -10,6 +10,17 @@ import java.awt.Graphics;
  */
 public class Deck {
 
+	private static final int INITIAL_CARD_COUNT = 25;
+
+	private int numCardsRemaining;
+
+	/**
+	 * Constructs a new development card deck with the initial distribution of cards
+	 */
+	public Deck() {
+		this.numCardsRemaining = INITIAL_CARD_COUNT;
+	}
+
 	/**
 	 * @return A copy of this deck that can be modified without affecting this one
 	 */
@@ -26,5 +37,12 @@ public class Deck {
 	 */
 	public void paint(final Graphics g) {
 		// TODO once member variables are implemented
+	}
+
+	/**
+	 * @return The number of cards remaining in this deck
+	 */
+	public int getNumCardsRemaining() {
+		return this.numCardsRemaining;
 	}
 }
