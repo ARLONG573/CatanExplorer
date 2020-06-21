@@ -38,11 +38,4 @@ public class Deck {
 	public void paint(final Graphics g) {
 		// TODO once member variables are implemented
 	}
-
-	/**
-	 * @return The number of cards remaining in this deck
-	 */
-	public int getNumCardsRemaining() {
-		return this.numCardsRemaining;
-	}
 }
