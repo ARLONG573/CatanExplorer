@@ -1,12 +1,15 @@
 package game.state;
 
+import java.awt.Graphics;
+
 import game.state.board.Board;
 import game.state.deck.Deck;
 import game.state.player.Player;
 
 /**
  * This class stores and applies changes to information related to some game
- * state.
+ * state. This class also contains methods that are used by the UI and MCTS
+ * components to gather/render data.
  * 
  * @author Aaron Tetens
  */
@@ -58,6 +61,38 @@ public class State {
 		final Deck deckCopy = this.deck.copy();
 
 		return new State(boardCopy, playersCopy, deckCopy, this.currentPlayerIndex);
+	}
+
+	/**
+	 * Paints the current board state
+	 * 
+	 * @param g
+	 *            The graphics context to paint the board state on
+	 */
+	public void paintBoard(final Graphics g) {
+		this.board.paint(g);
+	}
+
+	/**
+	 * Paints the current state of the given player
+	 * 
+	 * @param g
+	 *            The graphics context to paint the player on
+	 * @param playerIndex
+	 *            The index of the player to paint
+	 */
+	public void paintPlayer(final Graphics g, final int playerIndex) {
+		this.players[playerIndex].paint(g);
+	}
+
+	/**
+	 * Paints the current state of the development card deck
+	 * 
+	 * @param g
+	 *            The graphics context to paint the deck on
+	 */
+	public void paintDeck(final Graphics g) {
+		this.deck.paint(g);
 	}
 
 	/**
