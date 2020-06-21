@@ -96,13 +96,6 @@ public class State {
 	}
 
 	/**
-	 * @return The player whose turn it currently is
-	 */
-	private Player getCurrentPlayer() {
-		return this.players[this.currentPlayerIndex];
-	}
-
-	/**
 	 * @return The number of players in the game
 	 */
 	private int getNumPlayers() {
