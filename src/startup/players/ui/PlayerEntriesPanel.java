@@ -115,24 +115,14 @@ class PlayerEntriesPanel extends JPanel {
 		}
 
 		// check for duplicate name
-		try {
-			if (ArrayUtils.containsDuplicate(playerNames)) {
-				ErrorUtils.displayErrorMessage(DUPLICATE_NAME_ERROR);
-				return false;
-			}
-		} catch (final IllegalArgumentException e) {
-			ErrorUtils.displayErrorMessage(e.getMessage());
+		if (ArrayUtils.containsDuplicate(playerNames)) {
+			ErrorUtils.displayErrorMessage(DUPLICATE_NAME_ERROR);
 			return false;
 		}
 
 		// check for duplicate color
-		try {
-			if (ArrayUtils.containsDuplicate(playerColors)) {
-				ErrorUtils.displayErrorMessage(DUPLICATE_COLOR_ERROR);
-				return false;
-			}
-		} catch (final IllegalArgumentException e) {
-			ErrorUtils.displayErrorMessage(e.getMessage());
+		if (ArrayUtils.containsDuplicate(playerColors)) {
+			ErrorUtils.displayErrorMessage(DUPLICATE_COLOR_ERROR);
 			return false;
 		}
 
