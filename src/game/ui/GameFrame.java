@@ -65,6 +65,4 @@ public class GameFrame extends JFrame {
 	State getGameState() {
 		return this.state;
 	}
-	
-	//TODO implement drawing of subcomponents
 }

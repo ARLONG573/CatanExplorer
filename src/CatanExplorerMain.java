@@ -1,3 +1,9 @@
+import java.util.Arrays;
+
+import game.state.State;
+import game.state.board.Board;
+import game.state.deck.Deck;
+import game.state.player.Player;
 import game.ui.GameFrame;
 
 /**
@@ -15,5 +21,8 @@ public class CatanExplorerMain {
 		// adding these for development of the GameFrame UI
 		GameFrame.getInstance().setVisible(true);
 		GameFrame.getInstance().setLocationRelativeTo(null);
+		final Player[] samplePlayers = new Player[4];
+		Arrays.fill(samplePlayers, new Player("", false));
+		GameFrame.getInstance().setGameState(new State(new Board(), samplePlayers, new Deck(), 0));
 	}
 }

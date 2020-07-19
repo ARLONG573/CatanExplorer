@@ -1,5 +1,7 @@
 package game.ui;
 
+import java.awt.Graphics;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -27,5 +29,12 @@ class BoardPanel extends JPanel {
 		}
 
 		return theInstance;
+	}
+
+	@Override
+	protected void paintComponent(final Graphics g) {
+		super.paintComponent(g);
+
+		GameFrame.getInstance().getGameState().paintBoard(g);
 	}
 }

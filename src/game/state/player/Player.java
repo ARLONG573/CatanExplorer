@@ -9,6 +9,11 @@ import java.awt.Graphics;
  */
 public class Player {
 
+	/**
+	 * How much horizontal space it takes to paint a player
+	 */
+	public static final int PAINT_WIDTH = 225;
+
 	// UI variables - consider refactoring if additional member variables make these
 	// variables redundant
 	private final String name;
@@ -48,8 +53,11 @@ public class Player {
 	 * 
 	 * @param g
 	 *            The graphics context to paint this board on
+	 * @param xOffset
+	 *            How far over to start painting the player - this value will always
+	 *            be (k * PAINT_WIDTH), where k is in the range [0, numPlayers)
 	 */
-	public void paint(final Graphics g) {
+	public void paint(final Graphics g, final int xOffset) {
 		// TODO once member variables are implemented
 	}
 }
