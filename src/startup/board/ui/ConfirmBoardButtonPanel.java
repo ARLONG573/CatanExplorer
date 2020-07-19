@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import game.state.State;
 import game.ui.GameFrame;
 import startup.players.ui.StartupPlayersFrame;
 
@@ -29,9 +30,12 @@ class ConfirmBoardButtonPanel extends JPanel {
 		this.confirmBoardButton = new JButton(CONFIRM_BOARD_BUTTON_TEXT);
 		this.confirmBoardButton.addActionListener((e) -> {
 			if (BoardEditor.getInstance().hasValidConfiguration()) {
+				// TODO store initial game state from the two startup screens
+				final State initialState = null;
+
+				GameFrame.getInstance().setGameState(initialState);
 				GameFrame.getInstance().setVisible(true);
 				GameFrame.getInstance().setLocationRelativeTo(null);
-				// TODO store initial game state from the two startup screens
 
 				// we no longer need the data stored in these frames, so dispose them
 				StartupPlayersFrame.getInstance().dispose();
