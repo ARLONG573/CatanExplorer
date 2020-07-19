@@ -17,6 +17,7 @@ class ActionsPanel extends JPanel {
 	private static ActionsPanel theInstance;
 
 	private ActionsPanel() {
+		// TODO add layout and actionless buttons
 		super.add(new JLabel("ACTIONS PANEL"));
 	}
 

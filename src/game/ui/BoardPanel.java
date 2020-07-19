@@ -17,6 +17,7 @@ class BoardPanel extends JPanel {
 	private static BoardPanel theInstance;
 
 	private BoardPanel() {
+		// TODO set size
 		super.add(new JLabel("BOARD PANEL"));
 	}
 

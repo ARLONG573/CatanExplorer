@@ -17,6 +17,7 @@ class PlayersPanel extends JPanel {
 	private static PlayersPanel theInstance;
 
 	private PlayersPanel() {
+		// TODO set size
 		super.add(new JLabel("PLAYERS PANEL"));
 	}
 

@@ -17,6 +17,8 @@ class DeckPanel extends JPanel {
 	private static DeckPanel theInstance;
 
 	private DeckPanel() {
+		// TODO position display on right-hand side (we will need a layout and another
+		// panel and to move the paintComponent method)
 		super.add(new JLabel("DECK PANEL"));
 	}
 
