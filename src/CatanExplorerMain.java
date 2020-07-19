@@ -1,4 +1,4 @@
-import startup.players.ui.StartupPlayersFrame;
+import game.ui.GameFrame;
 
 /**
  * This is the main class for the CatanExplorer program. Its sole responsibility
@@ -8,7 +8,12 @@ import startup.players.ui.StartupPlayersFrame;
  */
 public class CatanExplorerMain {
 	public static void main(String[] args) {
-		StartupPlayersFrame.getInstance().setVisible(true);
-		StartupPlayersFrame.getInstance().setLocationRelativeTo(null);
+		// commenting these out for development of the GameFrame UI
+		// StartupPlayersFrame.getInstance().setVisible(true);
+		// StartupPlayersFrame.getInstance().setLocationRelativeTo(null);
+
+		// adding these for development of the GameFrame UI
+		GameFrame.getInstance().setVisible(true);
+		GameFrame.getInstance().setLocationRelativeTo(null);
 	}
 }
