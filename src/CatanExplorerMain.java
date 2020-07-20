@@ -19,10 +19,10 @@ public class CatanExplorerMain {
 		// StartupPlayersFrame.getInstance().setLocationRelativeTo(null);
 
 		// adding these for development of the GameFrame UI
-		GameFrame.getInstance().setVisible(true);
-		GameFrame.getInstance().setLocationRelativeTo(null);
 		final Player[] samplePlayers = new Player[4];
 		Arrays.fill(samplePlayers, new Player("", false));
 		GameFrame.getInstance().setGameState(new State(new Board(), samplePlayers, new Deck(), 0));
+		GameFrame.getInstance().setVisible(true);
+		GameFrame.getInstance().setLocationRelativeTo(null);
 	}
 }
