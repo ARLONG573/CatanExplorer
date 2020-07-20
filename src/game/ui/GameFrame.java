@@ -21,6 +21,7 @@ public class GameFrame extends JFrame {
 	private State state;
 
 	private GameFrame() {
+		super.setResizable(false);
 		super.setLayout(new BorderLayout());
 		super.add(BoardPanel.getInstance(), BorderLayout.CENTER);
 		super.add(ActionsPanel.getInstance(), BorderLayout.EAST);

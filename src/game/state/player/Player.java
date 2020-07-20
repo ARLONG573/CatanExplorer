@@ -1,5 +1,6 @@
 package game.state.player;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 /**
@@ -13,6 +14,11 @@ public class Player {
 	 * How much horizontal space it takes to paint a player
 	 */
 	public static final int PAINT_WIDTH = 225;
+
+	/**
+	 * How much vertical space it takes to paint a player
+	 */
+	public static final int PAINT_HEIGHT = 200;
 
 	// UI variables - consider refactoring if additional member variables make these
 	// variables redundant
@@ -58,6 +64,28 @@ public class Player {
 	 *            be (k * PAINT_WIDTH), where k is in the range [0, numPlayers)
 	 */
 	public void paint(final Graphics g, final int xOffset) {
-		// TODO once member variables are implemented
+		// TODO this is a placeholder until member variables are implemented
+		final Color color;
+
+		switch (xOffset) {
+		case 0 * PAINT_WIDTH:
+			color = Color.RED;
+			break;
+		case 1 * PAINT_WIDTH:
+			color = Color.WHITE;
+			break;
+		case 2 * PAINT_WIDTH:
+			color = Color.BLUE;
+			break;
+		case 3 * PAINT_WIDTH:
+			color = Color.ORANGE;
+			break;
+		default:
+			color = Color.BLACK;
+			break;
+		}
+
+		g.setColor(color);
+		g.fillRect(xOffset, 0, PAINT_WIDTH, PAINT_HEIGHT);
 	}
 }

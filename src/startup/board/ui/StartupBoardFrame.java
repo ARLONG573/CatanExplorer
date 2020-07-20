@@ -17,6 +17,7 @@ public class StartupBoardFrame extends JFrame {
 	private static StartupBoardFrame theInstance;
 
 	private StartupBoardFrame() {
+		super.setResizable(false);
 		super.setLayout(new BorderLayout());
 		super.add(BoardEditor.getInstance(), BorderLayout.CENTER);
 		super.add(BoardToolbar.getInstance(), BorderLayout.EAST);

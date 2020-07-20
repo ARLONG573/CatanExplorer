@@ -1,8 +1,7 @@
 package game.ui;
 
-import java.awt.Graphics;
+import java.awt.BorderLayout;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -17,9 +16,8 @@ class DeckPanel extends JPanel {
 	private static DeckPanel theInstance;
 
 	private DeckPanel() {
-		// TODO position display on right-hand side (we will need a layout and another
-		// panel and to move the paintComponent method)
-		super.add(new JLabel("DECK PANEL"));
+		super.setLayout(new BorderLayout());
+		super.add(DeckLabel.getInstance(), BorderLayout.EAST);
 	}
 
 	/**
@@ -31,12 +29,5 @@ class DeckPanel extends JPanel {
 		}
 
 		return theInstance;
-	}
-
-	@Override
-	protected void paintComponent(final Graphics g) {
-		super.paintComponent(g);
-
-		GameFrame.getInstance().getGameState().paintDeck(g);
 	}
 }

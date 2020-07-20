@@ -1,9 +1,11 @@
 package game.ui;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import game.state.player.Player;
 
 /**
  * This panel displays information about the players in the game.
@@ -17,8 +19,7 @@ class PlayersPanel extends JPanel {
 	private static PlayersPanel theInstance;
 
 	private PlayersPanel() {
-		// TODO set size
-		super.add(new JLabel("PLAYERS PANEL"));
+		super.setPreferredSize(new Dimension(4 * Player.PAINT_WIDTH, Player.PAINT_HEIGHT));
 	}
 
 	/**

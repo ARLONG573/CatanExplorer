@@ -1,5 +1,6 @@
 package game.state.board;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 /**
@@ -9,6 +10,11 @@ import java.awt.Graphics;
  * @author Aaron Tetens
  */
 public class Board {
+
+	/**
+	 * The width/height required to paint the board
+	 */
+	public static final int PAINT_SIZE = 600;
 
 	/**
 	 * @return A copy of this board that can be modified without affecting this one
@@ -25,6 +31,8 @@ public class Board {
 	 *            The graphics context to paint this board on
 	 */
 	public void paint(final Graphics g) {
-		// TODO once member variables are implemented
+		// TODO this is a placeholder until member variables are implemented
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, PAINT_SIZE, PAINT_SIZE);
 	}
 }
