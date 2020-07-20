@@ -1,10 +1,4 @@
-import java.util.Arrays;
-
-import game.state.State;
-import game.state.board.Board;
-import game.state.deck.Deck;
-import game.state.player.Player;
-import game.ui.GameFrame;
+import startup.players.ui.StartupPlayersFrame;
 
 /**
  * This is the main class for the CatanExplorer program. Its sole responsibility
@@ -14,15 +8,16 @@ import game.ui.GameFrame;
  */
 public class CatanExplorerMain {
 	public static void main(String[] args) {
-		// commenting these out for development of the GameFrame UI
-		// StartupPlayersFrame.getInstance().setVisible(true);
-		// StartupPlayersFrame.getInstance().setLocationRelativeTo(null);
+		// comment these lines for development of the GameFrame UI
+		StartupPlayersFrame.getInstance().setVisible(true);
+		StartupPlayersFrame.getInstance().setLocationRelativeTo(null);
 
-		// adding these for development of the GameFrame UI
-		final Player[] samplePlayers = new Player[4];
-		Arrays.fill(samplePlayers, new Player("", false));
-		GameFrame.getInstance().setGameState(new State(new Board(), samplePlayers, new Deck(), 0));
-		GameFrame.getInstance().setVisible(true);
-		GameFrame.getInstance().setLocationRelativeTo(null);
+		// uncomment these lines for development of the GameFrame UI
+		// final Player[] samplePlayers = new Player[4];
+		// Arrays.fill(samplePlayers, new Player("", false));
+		// GameFrame.getInstance().setGameState(new State(new Board(), samplePlayers,
+		// new Deck(), 0));
+		// GameFrame.getInstance().setVisible(true);
+		// GameFrame.getInstance().setLocationRelativeTo(null);
 	}
 }
