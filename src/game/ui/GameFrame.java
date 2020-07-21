@@ -58,7 +58,7 @@ public class GameFrame extends JFrame {
 	 * This method is package private because it is only meant for UI subcomponents
 	 * to see (these subcomponents are painted by
 	 * {@link State#paintBoard(java.awt.Graphics)},
-	 * {@link State#paintPlayer(java.awt.Graphics, int)}, and
+	 * {@link State#paintPlayers(java.awt.Graphics, int)}, and
 	 * {@link State#paintDeck(java.awt.Graphics)}).
 	 * 
 	 * @return The game state that this frame is displaying
