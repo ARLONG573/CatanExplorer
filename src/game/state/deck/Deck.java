@@ -1,5 +1,7 @@
 package game.state.deck;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 /**
@@ -9,6 +11,19 @@ import java.awt.Graphics;
  * @author Aaron Tetens
  */
 public class Deck {
+
+	/**
+	 * The width required to paint the deck status
+	 */
+	public static final int PAINT_WIDTH = 300;
+
+	/**
+	 * The height required to paint the deck status
+	 */
+	public static final int PAINT_HEIGHT = 100;
+
+	private static final String STATUS_PREFIX = "Dev cards remaining: ";
+	private static final Font STATUS_FONT = new Font("Arial", Font.PLAIN, 26);
 
 	private static final int INITIAL_CARD_COUNT = 25;
 
@@ -38,6 +53,10 @@ public class Deck {
 	 *            The graphics context to paint this board on
 	 */
 	public void paint(final Graphics g) {
-		// TODO once member variables are implemented
+		final String status = STATUS_PREFIX + this.numCardsRemaining;
+
+		g.setFont(STATUS_FONT);
+		g.setColor(Color.BLACK);
+		g.drawString(status, 0, PAINT_HEIGHT / 2);
 	}
 }

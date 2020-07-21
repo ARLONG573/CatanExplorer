@@ -74,15 +74,17 @@ public class State {
 	}
 
 	/**
-	 * Paints the current state of the given player
+	 * Paints the current state of the players
 	 * 
 	 * @param g
-	 *            The graphics context to paint the player on
-	 * @param playerIndex
-	 *            The index of the player to paint
+	 *            The graphics context to paint the players on
 	 */
-	public void paintPlayer(final Graphics g, final int playerIndex) {
-		this.players[playerIndex].paint(g);
+	public void paintPlayers(final Graphics g) {
+		final int numPlayers = this.getNumPlayers();
+
+		for (int i = 0; i < numPlayers; i++) {
+			players[i].paint(g, i * Player.PAINT_WIDTH);
+		}
 	}
 
 	/**
