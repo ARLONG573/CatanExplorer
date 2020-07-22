@@ -50,7 +50,11 @@ public class GameFrame extends JFrame {
 	 */
 	public void setGameState(final State state) {
 		this.state = state;
-
+		
+		//enable/disable buttons depending on which actions are possible for the current player
+		ActionsPanel.getInstance().updateButtons();
+		
+		//update UI
 		super.repaint();
 	}
 

@@ -26,6 +26,7 @@ class ActionsPanel extends JPanel {
 	private static final String TRADE_BUTTON_TEXT = "Trade";
 	private static final String BUILD_BUTTON_TEXT = "Build";
 	private static final String PLAY_DEV_CARD_BUTTON_TEXT = "Play dev card";
+	private static final String END_TURN_BUTTON_TEXT = "End turn";
 	private static final int PADDING = 10;
 
 	private static ActionsPanel theInstance;
@@ -34,6 +35,7 @@ class ActionsPanel extends JPanel {
 	private final JButton tradeButton;
 	private final JButton buildButton;
 	private final JButton playDevCardButton;
+	private final JButton endTurnButton;
 	private final JTextArea gameLogArea;
 
 	private ActionsPanel() {
@@ -49,6 +51,9 @@ class ActionsPanel extends JPanel {
 		this.playDevCardButton = new JButton(PLAY_DEV_CARD_BUTTON_TEXT);
 		this.playDevCardButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+		this.endTurnButton = new JButton(END_TURN_BUTTON_TEXT);
+		this.endTurnButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 		this.gameLogArea = new JTextArea();
 		this.gameLogArea.setEditable(false);
 
@@ -63,6 +68,8 @@ class ActionsPanel extends JPanel {
 		super.add(Box.createRigidArea(new Dimension(0, PADDING)));
 		super.add(this.playDevCardButton);
 		super.add(Box.createRigidArea(new Dimension(0, PADDING)));
+		super.add(this.endTurnButton);
+		super.add(Box.createRigidArea(new Dimension(0, PADDING)));
 		super.add(this.gameLogArea);
 	}
 
@@ -75,5 +82,13 @@ class ActionsPanel extends JPanel {
 		}
 
 		return theInstance;
+	}
+
+	/**
+	 * Enables/disables the buttons depending on which actions are possible for the
+	 * current player.
+	 */
+	void updateButtons() {
+		// TODO
 	}
 }
