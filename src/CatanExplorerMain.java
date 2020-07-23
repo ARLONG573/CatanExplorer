@@ -13,11 +13,16 @@ public class CatanExplorerMain {
 		StartupPlayersFrame.getInstance().setLocationRelativeTo(null);
 
 		// uncomment these lines for development of the GameFrame UI
-		// final Player[] samplePlayers = new Player[4];
-		// Arrays.fill(samplePlayers, new Player("", false));
-		// GameFrame.getInstance().setGameState(new State(new Board(), samplePlayers,
-		// new Deck(), 0));
-		// GameFrame.getInstance().setVisible(true);
-		// GameFrame.getInstance().setLocationRelativeTo(null);
+//		final Player[] samplePlayers = new Player[4];
+//		samplePlayers[0] = new Player("Aaron", Color.RED, true);
+//		samplePlayers[1] = new Player("Cory", Color.WHITE, false);
+//		samplePlayers[2] = new Player("Phil", Color.BLUE, false);
+//		samplePlayers[3] = new Player("Madison", Color.ORANGE, false);
+//		
+//		samplePlayers[3].isCurrentPlayer = true;
+//		
+//		GameFrame.getInstance().setGameState(new State(new Board(), samplePlayers, new Deck(), 0));
+//		GameFrame.getInstance().setVisible(true);
+//		GameFrame.getInstance().setLocationRelativeTo(null);
 	}
 }
