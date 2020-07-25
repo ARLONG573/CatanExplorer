@@ -9,9 +9,7 @@ import java.awt.Graphics;
  * 
  * @author Aaron Tetens
  */
-public class Player {
-
-	// TODO make this class abstract, implement subclasses HumanPlayer and AIPlayer
+public abstract class Player {
 
 	/**
 	 * How much horizontal space it takes to paint a player
@@ -32,9 +30,8 @@ public class Player {
 
 	// UI variables - consider refactoring if additional member variables make these
 	// variables redundant
-	private final String name;
+	protected final String name;
 	private final Color color;
-	private final boolean isAIPlayer;
 	public boolean isCurrentPlayer;
 	private int numResources;
 	private int numDevCards;
@@ -42,10 +39,9 @@ public class Player {
 	private int numKnightsPlayed;
 	private int visibleVP;
 
-	public Player(final String name, final Color color, final boolean isAIPlayer) {
+	public Player(final String name, final Color color) {
 		this.name = name;
 		this.color = color;
-		this.isAIPlayer = isAIPlayer;
 		this.isCurrentPlayer = false;
 		this.numResources = 0;
 		this.numDevCards = 0;
@@ -93,15 +89,9 @@ public class Player {
 		// Road Progress: [longestRoadSegment]
 		// Army Progress: [numKnightsPlayed]
 		// VP: [visibleVP]
-		final StringBuilder nameBuilder = new StringBuilder();
-		nameBuilder.append(this.name);
-		if (this.isAIPlayer) {
-			nameBuilder.append(" (AI)");
-		}
-
 		g.setColor(Color.BLACK);
 		g.setFont(STATUS_FONT);
-		g.drawString(nameBuilder.toString(), xOffset + BORDER_WIDTH, BORDER_WIDTH + TEXT_PADDING);
+		g.drawString(this.getDisplayName(), xOffset + BORDER_WIDTH, BORDER_WIDTH + TEXT_PADDING);
 		g.drawString("Resource Cards: " + this.numResources + NEW_LINE, xOffset + BORDER_WIDTH,
 				BORDER_WIDTH + 3 * TEXT_PADDING);
 		g.drawString("Development Cards: " + this.numDevCards + NEW_LINE, xOffset + BORDER_WIDTH,
@@ -112,4 +102,9 @@ public class Player {
 				BORDER_WIDTH + 6 * TEXT_PADDING);
 		g.drawString("VP: " + this.visibleVP, xOffset + BORDER_WIDTH, BORDER_WIDTH + 7 * TEXT_PADDING);
 	}
+
+	/**
+	 * @return The name to be displayed in the UI for this player
+	 */
+	protected abstract String getDisplayName();
 }
