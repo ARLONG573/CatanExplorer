@@ -5,10 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import game.state.State;
-import game.state.board.Board;
-import game.state.deck.Deck;
-import game.ui.GameFrame;
+import startup.board.ui.StartupBoardFrame;
 
 /**
  * This is the panel that holds the button that the user clicks to leave the
@@ -35,15 +32,16 @@ class ConfirmPlayersButtonPanel extends JPanel {
 				// instead of creating the player data and disposing of the player frame now, we
 				// will accumulate all of the data at once and dispose of both frames after
 				// the board is created
-//				StartupPlayersFrame.getInstance().setVisible(false);
-//				StartupBoardFrame.getInstance().setVisible(true);
-//				StartupBoardFrame.getInstance().setLocationRelativeTo(null);
-				
-				//For testing purposes
 				StartupPlayersFrame.getInstance().setVisible(false);
-				GameFrame.getInstance().setGameState(new State(new Board(), PlayerEntriesPanel.getInstance().createPlayers(), new Deck(), 0));
-				GameFrame.getInstance().setVisible(true);
-				GameFrame.getInstance().setLocationRelativeTo(null);
+				StartupBoardFrame.getInstance().setVisible(true);
+				StartupBoardFrame.getInstance().setLocationRelativeTo(null);
+
+				// For testing purposes
+				// StartupPlayersFrame.getInstance().setVisible(false);
+				// GameFrame.getInstance().setGameState(new State(new Board(),
+				// PlayerEntriesPanel.getInstance().createPlayers(), new Deck(), 0));
+				// GameFrame.getInstance().setVisible(true);
+				// GameFrame.getInstance().setLocationRelativeTo(null);
 			}
 		});
 
