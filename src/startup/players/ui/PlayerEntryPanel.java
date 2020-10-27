@@ -1,5 +1,6 @@
 package startup.players.ui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.Box;
@@ -9,7 +10,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import game.state.player.AIPlayer;
+import game.state.player.HumanPlayer;
+import game.state.player.Player;
 import startup.players.data.PlayerColor;
+import startup.players.data.PlayerType;
 
 /**
  * This is the panel that holds all of the components necessary for entering
@@ -27,6 +32,7 @@ class PlayerEntryPanel extends JPanel {
 	private final JLabel nameLabel;
 	private final JTextField nameField;
 	private final JComboBox<PlayerColor> colorComboBox;
+	private final JComboBox<PlayerType> typeComboBox;
 
 	PlayerEntryPanel() {
 		super.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
@@ -34,12 +40,15 @@ class PlayerEntryPanel extends JPanel {
 		this.nameLabel = new JLabel(NAME_LABEL_TEXT);
 		this.nameField = new JTextField(DEFAULT_TEXT_FIELD_COLUMNS);
 		this.colorComboBox = new JComboBox<>(PlayerColor.class.getEnumConstants());
+		this.typeComboBox = new JComboBox<>(PlayerType.class.getEnumConstants());
 
 		super.add(this.nameLabel);
 		super.add(Box.createRigidArea(new Dimension(PADDING, 0)));
 		super.add(this.nameField);
 		super.add(Box.createRigidArea(new Dimension(PADDING, 0)));
 		super.add(this.colorComboBox);
+		super.add(Box.createRigidArea(new Dimension(PADDING, 0)));
+		super.add(this.typeComboBox);
 	}
 
 	/**
@@ -57,5 +66,30 @@ class PlayerEntryPanel extends JPanel {
 	 */
 	PlayerColor getPlayerColor() {
 		return (PlayerColor) (this.colorComboBox.getSelectedItem());
+	}
+
+	/**
+	 * @return A new player object that is initialized with the current state of
+	 *         this player editor.
+	 */
+	Player createPlayer() {
+		final String name = this.getPlayerName();
+		final Color color = this.getPlayerColor().asColor();
+
+		switch (this.getPlayerType()) {
+		case HUMAN:
+			return new HumanPlayer(name, color);
+		case AI:
+			return new AIPlayer(name, color);
+		default:
+			return null;
+		}
+	}
+
+	/**
+	 * @return The player's type.
+	 */
+	private PlayerType getPlayerType() {
+		return (PlayerType) (this.typeComboBox.getSelectedItem());
 	}
 }
