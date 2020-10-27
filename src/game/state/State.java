@@ -37,7 +37,8 @@ public class State {
 		this.board = board;
 		this.players = players;
 		this.deck = deck;
-		this.currentPlayerIndex = currentPlayerIndex;
+
+		this.setCurrentPlayerIndex(currentPlayerIndex);
 	}
 
 	/**
@@ -102,5 +103,20 @@ public class State {
 	 */
 	private int getNumPlayers() {
 		return this.players.length;
+	}
+
+	/**
+	 * Sets the index of the current player and updates all players within the game
+	 * to reflect the change.
+	 * 
+	 * @param currentPlayerIndex
+	 *            The index of the new current player
+	 */
+	private void setCurrentPlayerIndex(final int currentPlayerIndex) {
+		this.currentPlayerIndex = currentPlayerIndex;
+
+		for (int i = 0; i < this.players.length; i++) {
+			this.players[i].isCurrentPlayer = (i == this.currentPlayerIndex);
+		}
 	}
 }

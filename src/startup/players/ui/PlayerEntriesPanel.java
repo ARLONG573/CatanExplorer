@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
+import game.state.player.Player;
 import startup.players.data.PlayerColor;
 import utils.ArrayUtils;
 import utils.ErrorUtils;
@@ -127,6 +128,20 @@ class PlayerEntriesPanel extends JPanel {
 		}
 
 		return true;
+	}
+
+	/**
+	 * @return An array of new player objects that is initialized with the current
+	 *         states of the player editors.
+	 */
+	Player[] createPlayers() {
+		final Player[] players = new Player[this.playerEntryPanels.size()];
+
+		for (int i = 0; i < this.playerEntryPanels.size(); i++) {
+			players[i] = this.playerEntryPanels.get(i).createPlayer();
+		}
+
+		return players;
 	}
 
 	/**

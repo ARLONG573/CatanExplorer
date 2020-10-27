@@ -35,6 +35,13 @@ class ConfirmPlayersButtonPanel extends JPanel {
 				StartupPlayersFrame.getInstance().setVisible(false);
 				StartupBoardFrame.getInstance().setVisible(true);
 				StartupBoardFrame.getInstance().setLocationRelativeTo(null);
+
+				// For testing purposes
+				// StartupPlayersFrame.getInstance().setVisible(false);
+				// GameFrame.getInstance().setGameState(new State(new Board(),
+				// PlayerEntriesPanel.getInstance().createPlayers(), new Deck(), 0));
+				// GameFrame.getInstance().setVisible(true);
+				// GameFrame.getInstance().setLocationRelativeTo(null);
 			}
 		});
 
