@@ -17,7 +17,7 @@ import utils.ErrorUtils;
  * 
  * @author Aaron Tetens
  */
-class PlayerEntriesPanel extends JPanel {
+public class PlayerEntriesPanel extends JPanel {
 
 	private static final long serialVersionUID = -6940232339738566884L;
 	private static final int MIN_PLAYERS = 3;
@@ -41,7 +41,7 @@ class PlayerEntriesPanel extends JPanel {
 	/**
 	 * @return The PlayerEntriesPanel instance
 	 */
-	static PlayerEntriesPanel getInstance() {
+	public static PlayerEntriesPanel getInstance() {
 		if (theInstance == null) {
 			theInstance = new PlayerEntriesPanel();
 		}
@@ -134,7 +134,7 @@ class PlayerEntriesPanel extends JPanel {
 	 * @return An array of new player objects that is initialized with the current
 	 *         states of the player editors.
 	 */
-	Player[] createPlayers() {
+	public Player[] createPlayers() {
 		final Player[] players = new Player[this.playerEntryPanels.size()];
 
 		for (int i = 0; i < this.playerEntryPanels.size(); i++) {

@@ -17,7 +17,7 @@ public class State {
 
 	private final Board board;
 	private final Player[] players;
-	private final Deck deck; // refers to the dev card deck
+	//private final Deck deck; // refers to the dev card deck
 
 	private int currentPlayerIndex;
 
@@ -33,10 +33,10 @@ public class State {
 	 * @param currentPlayerIndex
 	 *            The index of the current player in the players array
 	 */
-	public State(final Board board, final Player[] players, final Deck deck, final int currentPlayerIndex) {
+	public State(final Board board, final Player[] players, /*final Deck deck, */final int currentPlayerIndex) {
 		this.board = board;
 		this.players = players;
-		this.deck = deck;
+		//this.deck = deck;
 
 		this.setCurrentPlayerIndex(currentPlayerIndex);
 	}
@@ -59,9 +59,9 @@ public class State {
 		}
 
 		// copy deck
-		final Deck deckCopy = this.deck.copy();
+		//final Deck deckCopy = this.deck.copy();
 
-		return new State(boardCopy, playersCopy, deckCopy, this.currentPlayerIndex);
+		return new State(boardCopy, playersCopy, /*deckCopy, */this.currentPlayerIndex);
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class State {
 	 *            The graphics context to paint the deck on
 	 */
 	public void paintDeck(final Graphics g) {
-		this.deck.paint(g);
+		//this.deck.paint(g);
 	}
 
 	/**

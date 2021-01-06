@@ -26,7 +26,7 @@ public class GameFrame extends JFrame {
 		super.add(BoardPanel.getInstance(), BorderLayout.CENTER);
 		super.add(ActionsPanel.getInstance(), BorderLayout.EAST);
 		super.add(PlayersPanel.getInstance(), BorderLayout.NORTH);
-		super.add(DeckPanel.getInstance(), BorderLayout.SOUTH);
+		//super.add(DeckPanel.getInstance(), BorderLayout.SOUTH);
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		super.pack();
 	}
