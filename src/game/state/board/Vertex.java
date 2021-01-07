@@ -11,32 +11,41 @@ import java.util.Set;
  */
 public class Vertex {
 
-	private final Set<Vertex> children;
+	private final Set<Vertex> adjacents;
 
-	private Settlement building;
+	private Settlement settlement;
 
 	public Vertex() {
-		this.children = new HashSet<>();
-		this.building = null;
+		this.adjacents = new HashSet<>();
+		this.settlement = null;
 	}
 
 	/**
-	 * Adds the given vertices as children vertices
+	 * Places the given settlement on this vertex
 	 * 
-	 * @param children
+	 * @param settlement
 	 */
-	void addChildren(final Vertex... children) {
-		for (final Vertex child : children) {
-			this.addChild(child);
+	void placeSettlement(final Settlement settlement) {
+		this.settlement = settlement;
+	}
+
+	/**
+	 * Adds the given vertices as adjacent vertices
+	 * 
+	 * @param adjacents
+	 */
+	void addAdjacentVertices(final Vertex... adjacents) {
+		for (final Vertex adjacent : adjacents) {
+			this.addAdjacentVertex(adjacent);
 		}
 	}
 
 	/**
-	 * Adds the given vertex as a child vertex
+	 * Adds the given vertex as an adjacent vertex
 	 * 
-	 * @param child
+	 * @param adjacent
 	 */
-	private void addChild(final Vertex child) {
-		this.children.add(child);
+	private void addAdjacentVertex(final Vertex adjacent) {
+		this.adjacents.add(adjacent);
 	}
 }

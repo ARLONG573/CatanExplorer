@@ -21,6 +21,15 @@ public class Edge {
 	}
 
 	/**
+	 * Places the given road on this edge
+	 * 
+	 * @param road
+	 */
+	void placeRoad(final Road road) {
+		this.road = road;
+	}
+
+	/**
 	 * Adds the given vertices as the endpoints of this edge
 	 * 
 	 * @param vertices
