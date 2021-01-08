@@ -33,7 +33,7 @@ class ConfirmBoardButtonPanel extends JPanel {
 		this.confirmBoardButton = new JButton(CONFIRM_BOARD_BUTTON_TEXT);
 		this.confirmBoardButton.addActionListener((e) -> {
 			if (BoardEditor.getInstance().hasValidConfiguration()) {
-				final Board board = new Board();
+				final Board board = BoardEditor.getInstance().createBoard();
 				final Player[] players = PlayerEntriesPanel.getInstance().createPlayers();
 				final State initialState = new State(board, players, 0);
 

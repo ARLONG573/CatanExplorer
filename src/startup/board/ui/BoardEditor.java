@@ -12,6 +12,7 @@ import java.util.Set;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import game.state.board.Board;
 import startup.board.data.selectable.HexNumber;
 import startup.board.data.selectable.HexResource;
 import startup.board.data.selectable.PortType;
@@ -222,6 +223,18 @@ class BoardEditor extends JPanel {
 		}
 
 		return true;
+	}
+
+	/**
+	 * This method does not call {@link hasValidConfiguration()}, since this method
+	 * is called only when the Confirm Board button is pressed, which checks the
+	 * configuration before calling this method.
+	 * 
+	 * @return A Board object based on the current state of the board.
+	 * 
+	 */
+	Board createBoard() {
+		return new Board(this.getHexes());
 	}
 
 	@Override

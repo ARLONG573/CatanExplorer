@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -28,17 +29,20 @@ public class Board {
 	private final Set<Edge> edges;
 	private final Set<Hex> hexes;
 
-	// Vertex reference map, needed to construct the network after creating the set of hexes
+	// Vertex reference map, needed to construct the network after creating the set
+	// of hexes
 	private final Map<Integer, Vertex> idToVertex;
 
-	public Board() {
+	public Board(final List<startup.board.editable.Hex> hexData) {
 		this.vertices = new HashSet<>();
 		this.edges = new HashSet<>();
 		this.hexes = new HashSet<>();
 
 		this.idToVertex = new HashMap<>();
 
-		// TODO populate the above sets
+		// make vertices and assign ids and adjacencies
+		// make edges
+		// make hexes
 	}
 
 	/**

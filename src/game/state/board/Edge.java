@@ -15,9 +15,12 @@ public class Edge {
 
 	private Road road;
 
-	public Edge() {
-		this.vertices = new HashSet<>();
+	public Edge(final Vertex v1, final Vertex v2) {
 		this.road = null;
+
+		this.vertices = new HashSet<>();
+		this.vertices.add(v1);
+		this.vertices.add(v2);
 	}
 
 	/**
@@ -27,25 +30,5 @@ public class Edge {
 	 */
 	void placeRoad(final Road road) {
 		this.road = road;
-	}
-
-	/**
-	 * Adds the given vertices as the endpoints of this edge
-	 * 
-	 * @param vertices
-	 */
-	void addVertices(final Vertex... vertices) {
-		for (final Vertex vertex : vertices) {
-			this.addVertex(vertex);
-		}
-	}
-
-	/**
-	 * Adds the given vertex as an endpoint of this edge
-	 * 
-	 * @param vertex
-	 */
-	private void addVertex(final Vertex vertex) {
-		this.vertices.add(vertex);
 	}
 }
