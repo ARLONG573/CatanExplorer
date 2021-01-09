@@ -20,6 +20,8 @@ public class Board {
 	 * The width/height required to paint the board
 	 */
 	public static final int PAINT_SIZE = 600;
+	
+	private static final int NUM_VERTICES = 34;
 
 	// The board is stored as a network of vertices and edges (in other words,
 	// settlement spots and road spots)
@@ -40,9 +42,11 @@ public class Board {
 
 		this.idToVertex = new HashMap<>();
 
-		// make vertices and assign ids and adjacencies
+		// make vertices (ids are assigned left-right, then top-bottom)
 		// make edges
 		// make hexes
+		
+		// assign vertex adjacencies
 	}
 
 	/**
@@ -60,8 +64,19 @@ public class Board {
 	 *            The graphics context to paint this board on
 	 */
 	public void paint(final Graphics g) {
-		// TODO this is a placeholder until member variables are implemented
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, PAINT_SIZE, PAINT_SIZE);
+		// paint the vertices
+		for(final Vertex vertex : this.vertices) {
+			vertex.paint(g);
+		}
+		
+		// paint the edges
+		for(final Edge edge : this.edges) {
+			edge.paint(g);
+		}
+		
+		// paint the hexes and ports
+		for(final Hex hex : this.hexes) {
+			hex.paint(g);
+		}
 	}
 }

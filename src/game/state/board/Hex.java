@@ -1,11 +1,10 @@
 package game.state.board;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.awt.Graphics;
 
 import startup.board.data.selectable.HexNumber;
 import startup.board.data.selectable.HexResource;
-import startup.board.data.selectable.PortType;
+import startup.board.editable.Port;
 
 /**
  * This class represents a hex on the Catan board. Each hex has exactly 6
@@ -17,21 +16,35 @@ public class Hex {
 
 	private final HexNumber number;
 	private final HexResource resource;
-	private final PortType port;
 
-	private final Set<Vertex> vertices;
+	// saving the port here makes drawing it easier, the actual game logic for ports
+	// is in the Vertex class
+	private final Port port;
 
-	public Hex(final startup.board.editable.Hex hex, final Vertex v1, Vertex v2, Vertex v3, Vertex v4, Vertex v5, Vertex v6) {
+	// these need to be ordered for drawing purposes
+	private final Vertex[] vertices;
+
+	public Hex(final startup.board.editable.Hex hex, final Vertex v1, Vertex v2, Vertex v3, Vertex v4, Vertex v5,
+			Vertex v6) {
 		this.number = hex.getNumber();
 		this.resource = hex.getResource();
-		this.port = hex.getPort() == null ? null : hex.getPort().getType();
+		this.port = hex.getPort();
 
-		this.vertices = new HashSet<>();
-		this.vertices.add(v1);
-		this.vertices.add(v2);
-		this.vertices.add(v3);
-		this.vertices.add(v4);
-		this.vertices.add(v5);
-		this.vertices.add(v6);
+		this.vertices = new Vertex[6];
+		this.vertices[0] = v1;
+		this.vertices[1] = v2;
+		this.vertices[2] = v3;
+		this.vertices[3] = v4;
+		this.vertices[4] = v5;
+		this.vertices[5] = v6;
+	}
+
+	/**
+	 * Paints this hex on the given graphics context
+	 * 
+	 * @param g
+	 */
+	void paint(final Graphics g) {
+
 	}
 }

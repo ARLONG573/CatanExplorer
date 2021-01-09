@@ -1,7 +1,11 @@
 package game.state.board;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.HashSet;
 import java.util.Set;
+
+import startup.board.data.selectable.PortType;
 
 /**
  * This class represents a vertex on the Catan board. Vertices are where
@@ -12,12 +16,48 @@ import java.util.Set;
 public class Vertex {
 
 	private final Set<Vertex> adjacents;
+	private final int x;
+	private final int y;
 
 	private Settlement settlement;
 
-	public Vertex() {
+	// port drawing code is in the Hex class since it is easier to draw from there
+	// so, we only need the port type while executing game-related logic
+	private PortType port;
+
+	/**
+	 * Creates a vertex that will be drawn at (x, y) on the BoardPanel
+	 * 
+	 * @param x
+	 * @param y
+	 */
+	public Vertex(final int x, final int y) {
+		this.x = x;
+		this.y = y;
+
 		this.adjacents = new HashSet<>();
 		this.settlement = null;
+		this.port = null;
+	}
+	
+	/**
+	 * Paints this vertex on the given graphics context
+	 * 
+	 * @param g
+	 */
+	void paint(final Graphics g) {
+		// TODO reflect current state of vertex instead of just a black circle
+		g.setColor(Color.BLACK);
+		g.fillArc(this.x, this.y, 10, 10, 0, 360);
+	}
+
+	/**
+	 * Sets the port type to the given type
+	 * 
+	 * @param port
+	 */
+	void setPortType(final PortType port) {
+		this.port = port;
 	}
 
 	/**
