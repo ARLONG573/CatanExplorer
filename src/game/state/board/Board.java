@@ -77,6 +77,7 @@ public class Board {
 		}
 		
 		// make edges
+		
 		// make hexes
 
 		// assign vertex adjacencies
@@ -113,7 +114,18 @@ public class Board {
 		}
 	}
 
+	/**
+	 * @return The vertices on this board
+	 */
 	private Collection<Vertex> getVertices() {
 		return this.vertices.values();
+	}
+	
+	/**
+	 * @param id
+	 * @return The vertex on this board with the given id
+	 */
+	private Vertex getVertex(final int id) {
+		return this.vertices.get(id);
 	}
 }

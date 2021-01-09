@@ -1,5 +1,6 @@
 package game.state.board;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 /**
@@ -28,7 +29,8 @@ public class Edge {
 	 * @param g
 	 */
 	void paint(final Graphics g) {
-
+		g.setColor(Color.BLACK);
+		g.drawLine(this.vertices[0].getX(), this.vertices[0].getY(), this.vertices[1].getX(), this.vertices[1].getY());
 	}
 
 	/**

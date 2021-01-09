@@ -41,12 +41,25 @@ public class Vertex {
 	}
 	
 	/**
+	 * @return The x-coordinate of this vertex
+	 */
+	int getX() {
+		return this.x;
+	}
+	
+	/**
+	 * @return The y-coordinate of this vertex
+	 */
+	int getY() {
+		return this.y;
+	}
+	
+	/**
 	 * Paints this vertex on the given graphics context
 	 * 
 	 * @param g
 	 */
 	void paint(final Graphics g) {
-		// TODO reflect current state of vertex instead of just a black circle
 		g.setColor(Color.BLACK);
 		g.fillArc(this.x, this.y, 10, 10, 0, 360);
 	}
