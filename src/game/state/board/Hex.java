@@ -85,6 +85,7 @@ public class Hex {
 	 * @param g
 	 */
 	void paint(final Graphics g) {
+		// TODO draw some indication if the robber is on this hex
 		// paint the resource color
 		g.setColor(this.resource.getBackgroundColor());
 		g.fillPolygon(this.xPoints, this.yPoints, 6);

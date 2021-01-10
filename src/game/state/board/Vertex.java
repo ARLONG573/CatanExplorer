@@ -60,8 +60,7 @@ public class Vertex {
 	 * @param g
 	 */
 	void paint(final Graphics g) {
-		g.setColor(Color.BLACK);
-		g.fillOval(this.x - 5, this.y - 5, 10, 10);
+		
 	}
 
 	/**

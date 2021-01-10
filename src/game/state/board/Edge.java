@@ -29,6 +29,7 @@ public class Edge {
 	 * @param g
 	 */
 	void paint(final Graphics g) {
+		// TODO show a road if one exists
 		g.setColor(Color.BLACK);
 		g.drawLine(this.v1.getX(), this.v1.getY(), this.v2.getX(), this.v2.getY());
 	}
