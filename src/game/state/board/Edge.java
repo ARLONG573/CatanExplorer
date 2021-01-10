@@ -11,16 +11,16 @@ import java.awt.Graphics;
  */
 public class Edge {
 
-	private final Vertex[] vertices;
+	private final Vertex v1;
+	private final Vertex v2;
 
 	private Road road;
 
 	public Edge(final Vertex v1, final Vertex v2) {
 		this.road = null;
 
-		this.vertices = new Vertex[2];
-		this.vertices[0] = v1;
-		this.vertices[1] = v2;
+		this.v1 = v1;
+		this.v2 = v2;
 	}
 
 	/**
@@ -30,7 +30,7 @@ public class Edge {
 	 */
 	void paint(final Graphics g) {
 		g.setColor(Color.BLACK);
-		g.drawLine(this.vertices[0].getX(), this.vertices[0].getY(), this.vertices[1].getX(), this.vertices[1].getY());
+		g.drawLine(this.v1.getX(), this.v1.getY(), this.v2.getX(), this.v2.getY());
 	}
 
 	/**
