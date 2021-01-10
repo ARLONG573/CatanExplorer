@@ -22,6 +22,7 @@ public class Board {
 	public static final int PAINT_SIZE = 600;
 
 	private static final int NUM_VERTICES = 54;
+	private static final int NUM_HEXES = 19;
 
 	// these variables help with the math to assign (x, y) values to vertices
 	// the board is split into an uneven lattice whose points contain the vertices
@@ -55,6 +56,14 @@ public class Board {
 			100 + 5 * V_GAP_SMALL + 5 * V_GAP_LARGE, 100 + 6 * V_GAP_SMALL + 5 * V_GAP_LARGE,
 			100 + 6 * V_GAP_SMALL + 5 * V_GAP_LARGE, 100 + 6 * V_GAP_SMALL + 5 * V_GAP_LARGE, };
 
+	// these variables define which 6 vertices belong to each hex
+	private static final int[] V1_ID = { 0, 1, 2, 7, 8, 9, 10, 16, 17, 18, 19, 20, 28, 29, 30, 31, 39, 40, 41 };
+	private static final int[] V2_ID = { 4, 5, 6, 12, 13, 14, 15, 22, 23, 24, 25, 26, 34, 35, 36, 37, 44, 45, 46 };
+	private static final int[] V3_ID = { 8, 9, 10, 17, 18, 19, 20, 28, 29, 30, 31, 32, 39, 40, 41, 42, 48, 49, 50 };
+	private static final int[] V4_ID = { 12, 13, 14, 22, 23, 24, 25, 33, 34, 35, 36, 37, 43, 44, 45, 46, 51, 52, 53 };
+	private static final int[] V5_ID = { 7, 8, 9, 16, 17, 18, 19, 27, 28, 29, 30, 31, 38, 39, 40, 41, 47, 48, 49 };
+	private static final int[] V6_ID = { 3, 4, 5, 11, 12, 13, 14, 21, 22, 23, 24, 25, 33, 34, 35, 36, 43, 44, 45 };
+
 	// The board is stored as a network of vertices and edges (in other words,
 	// settlement spots and road spots)
 	// Hexes store which vertices are on them, allowing us to apply real-world
@@ -75,12 +84,18 @@ public class Board {
 		for (int i = 0; i < NUM_VERTICES; i++) {
 			this.vertices.put(i, new Vertex(X_POINTS[i], Y_POINTS[i]));
 		}
-		
-		// make edges
-		
-		// make hexes
 
 		// assign vertex adjacencies
+
+		// make edges
+
+		// make hexes
+		for (int i = 0; i < NUM_HEXES; i++) {
+			this.hexes.add(new Hex(hexData.get(i), this.getVertex(V1_ID[i]), this.getVertex(V2_ID[i]),
+					this.getVertex(V3_ID[i]), this.getVertex(V4_ID[i]), this.getVertex(V5_ID[i]),
+					this.getVertex(V6_ID[i])));
+		}
+
 	}
 
 	/**
@@ -98,20 +113,21 @@ public class Board {
 	 *            The graphics context to paint this board on
 	 */
 	public void paint(final Graphics g) {
-		// paint the vertices
-		for (final Vertex vertex : this.getVertices()) {
-			vertex.paint(g);
+		// paint the hexes and ports first
+		for (final Hex hex : this.hexes) {
+			hex.paint(g);
 		}
 
-		// paint the edges
+		// paint the edges next
 		for (final Edge edge : this.edges) {
 			edge.paint(g);
 		}
 
-		// paint the hexes and ports
-		for (final Hex hex : this.hexes) {
-			hex.paint(g);
+		// paint the vertices on top
+		for (final Vertex vertex : this.getVertices()) {
+			vertex.paint(g);
 		}
+
 	}
 
 	/**
@@ -120,7 +136,7 @@ public class Board {
 	private Collection<Vertex> getVertices() {
 		return this.vertices.values();
 	}
-	
+
 	/**
 	 * @param id
 	 * @return The vertex on this board with the given id

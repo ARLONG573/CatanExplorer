@@ -39,21 +39,21 @@ public class Vertex {
 		this.settlement = null;
 		this.port = null;
 	}
-	
+
 	/**
 	 * @return The x-coordinate of this vertex
 	 */
 	int getX() {
 		return this.x;
 	}
-	
+
 	/**
 	 * @return The y-coordinate of this vertex
 	 */
 	int getY() {
 		return this.y;
 	}
-	
+
 	/**
 	 * Paints this vertex on the given graphics context
 	 * 
@@ -61,7 +61,7 @@ public class Vertex {
 	 */
 	void paint(final Graphics g) {
 		g.setColor(Color.BLACK);
-		g.fillArc(this.x, this.y, 10, 10, 0, 360);
+		g.fillOval(this.x - 5, this.y - 5, 10, 10);
 	}
 
 	/**

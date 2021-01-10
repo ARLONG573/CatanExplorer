@@ -22,7 +22,12 @@ public class Hex {
 	private final Port port;
 
 	// these need to be ordered for drawing purposes
+	// start at the top and go clockwise
 	private final Vertex[] vertices;
+
+	// used for drawing the hex, defined by the vertices
+	private final int[] xPoints;
+	private final int[] yPoints;
 
 	public Hex(final startup.board.editable.Hex hex, final Vertex v1, Vertex v2, Vertex v3, Vertex v4, Vertex v5,
 			Vertex v6) {
@@ -37,6 +42,13 @@ public class Hex {
 		this.vertices[3] = v4;
 		this.vertices[4] = v5;
 		this.vertices[5] = v6;
+
+		this.xPoints = new int[6];
+		this.yPoints = new int[6];
+		for (int i = 0; i < 6; i++) {
+			this.xPoints[i] = this.vertices[i].getX();
+			this.yPoints[i] = this.vertices[i].getY();
+		}
 	}
 
 	/**
@@ -45,6 +57,7 @@ public class Hex {
 	 * @param g
 	 */
 	void paint(final Graphics g) {
-
+		g.setColor(this.resource.getBackgroundColor());
+		g.fillPolygon(this.xPoints, this.yPoints, 6);
 	}
 }
