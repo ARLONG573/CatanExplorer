@@ -1,5 +1,8 @@
 package game.state.board;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 
 import startup.board.data.selectable.HexNumber;
@@ -13,6 +16,8 @@ import startup.board.editable.Port;
  * @author Aaron Tetens
  */
 public class Hex {
+
+	private static final Font NUMBER_FONT = new Font("Arial", Font.BOLD, 18);
 
 	private final HexNumber number;
 	private final HexResource resource;
@@ -28,6 +33,10 @@ public class Hex {
 	// used for drawing the hex, defined by the vertices
 	private final int[] xPoints;
 	private final int[] yPoints;
+
+	// used for drawing the hex number, can be inferred from the vertices
+	private final int x;
+	private final int y;
 
 	public Hex(final startup.board.editable.Hex hex, final Vertex v1, Vertex v2, Vertex v3, Vertex v4, Vertex v5,
 			Vertex v6) {
@@ -49,6 +58,25 @@ public class Hex {
 			this.xPoints[i] = this.vertices[i].getX();
 			this.yPoints[i] = this.vertices[i].getY();
 		}
+
+		// figure out this hex's (x, y)
+		int minX = Integer.MAX_VALUE;
+		int maxX = Integer.MIN_VALUE;
+		int minY = Integer.MAX_VALUE;
+		int maxY = Integer.MIN_VALUE;
+
+		for (final Vertex vertex : this.vertices) {
+			final int vertexX = vertex.getX();
+			final int vertexY = vertex.getY();
+
+			minX = Math.min(minX, vertexX);
+			maxX = Math.max(maxX, vertexX);
+			minY = Math.min(minY, vertexY);
+			maxY = Math.max(maxY, vertexY);
+		}
+
+		this.x = (minX + maxX) / 2;
+		this.y = (minY + maxY) / 2;
 	}
 
 	/**
@@ -57,7 +85,19 @@ public class Hex {
 	 * @param g
 	 */
 	void paint(final Graphics g) {
+		// paint the resource color
 		g.setColor(this.resource.getBackgroundColor());
 		g.fillPolygon(this.xPoints, this.yPoints, 6);
+
+		// paint the number
+		g.setColor(Color.BLACK);
+		g.setFont(NUMBER_FONT);
+
+		final FontMetrics metrics = g.getFontMetrics();
+		final String text = this.number.toString();
+		final int textWidth = metrics.stringWidth(text);
+		final int textHeight = metrics.getHeight();
+
+		g.drawString(text, this.x - textWidth / 2, this.y + textHeight / 2);
 	}
 }
