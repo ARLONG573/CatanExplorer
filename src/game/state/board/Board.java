@@ -108,7 +108,62 @@ public class Board {
 		}
 
 		// assign vertex adjacencies
+		this.assignAdjacencies(0, 3, 4);
+		this.assignAdjacencies(1, 4, 5);
+		this.assignAdjacencies(2, 5, 6);
+		this.assignAdjacencies(3, 0, 7);
+		this.assignAdjacencies(4, 0, 1, 8);
+		this.assignAdjacencies(5, 1, 2, 9);
+		this.assignAdjacencies(6, 2, 10);
+		this.assignAdjacencies(7, 3, 11, 12);
+		this.assignAdjacencies(8, 4, 12, 13);
+		this.assignAdjacencies(9, 5, 13, 14);
+		this.assignAdjacencies(10, 6, 14, 15);
+		this.assignAdjacencies(11, 7, 16);
+		this.assignAdjacencies(12, 7, 8, 17);
+		this.assignAdjacencies(13, 8, 9, 18);
+		this.assignAdjacencies(14, 9, 10, 19);
+		this.assignAdjacencies(15, 10, 20);
+		this.assignAdjacencies(16, 11, 21, 22);
+		this.assignAdjacencies(17, 12, 22, 23);
+		this.assignAdjacencies(18, 13, 23, 24);
+		this.assignAdjacencies(19, 14, 24, 25);
+		this.assignAdjacencies(20, 15, 25, 26);
+		this.assignAdjacencies(21, 16, 27);
+		this.assignAdjacencies(22, 16, 17, 28);
+		this.assignAdjacencies(23, 17, 18, 29);
+		this.assignAdjacencies(24, 18, 19, 30);
+		this.assignAdjacencies(25, 19, 20, 31);
+		this.assignAdjacencies(26, 20, 32);
+		this.assignAdjacencies(27, 21, 33);
+		this.assignAdjacencies(28, 22, 33, 34);
+		this.assignAdjacencies(29, 23, 34, 35);
+		this.assignAdjacencies(30, 24, 35, 36);
+		this.assignAdjacencies(31, 25, 36, 37);
+		this.assignAdjacencies(32, 26, 37);
+		this.assignAdjacencies(33, 27, 28, 38);
+		this.assignAdjacencies(34, 28, 29, 39);
+		this.assignAdjacencies(35, 29, 30, 40);
+		this.assignAdjacencies(36, 30, 31, 41);
+		this.assignAdjacencies(37, 31, 32, 42);
+		this.assignAdjacencies(38, 33, 43);
+		this.assignAdjacencies(39, 34, 43, 44);
+		this.assignAdjacencies(40, 35, 44, 45);
+		this.assignAdjacencies(41, 36, 45, 46);
+		this.assignAdjacencies(42, 37, 46);
+		this.assignAdjacencies(43, 38, 39, 47);
+		this.assignAdjacencies(44, 39, 40, 48);
+		this.assignAdjacencies(45, 40, 41, 49);
+		this.assignAdjacencies(46, 41, 42, 50);
+		this.assignAdjacencies(47, 43, 51);
+		this.assignAdjacencies(48, 44, 51, 52);
+		this.assignAdjacencies(49, 45, 52, 53);
+		this.assignAdjacencies(50, 46, 53);
+		this.assignAdjacencies(51, 47, 48);
+		this.assignAdjacencies(52, 48, 49);
+		this.assignAdjacencies(53, 49, 50);
 
+		// test everything
 	}
 
 	/**
@@ -148,6 +203,25 @@ public class Board {
 	 */
 	private Collection<Vertex> getVertices() {
 		return this.vertices.values();
+	}
+
+	/**
+	 * Assigns an array of vertices as adjacent to some vertex
+	 * 
+	 * @param id
+	 *            The id of the vertex that is being assigned to
+	 * @param ids
+	 *            The ids of the vertices that are adjacent to it
+	 */
+	private void assignAdjacencies(final int id, final int... ids) {
+		final int n = ids.length;
+		final Vertex[] vertices = new Vertex[n];
+
+		for (int i = 0; i < n; i++) {
+			vertices[i] = this.getVertex(ids[i]);
+		}
+
+		this.getVertex(id).addAdjacentVertices(vertices);
 	}
 
 	/**

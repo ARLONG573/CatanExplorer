@@ -1,6 +1,5 @@
 package game.state.board;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.util.HashSet;
 import java.util.Set;
@@ -60,7 +59,7 @@ public class Vertex {
 	 * @param g
 	 */
 	void paint(final Graphics g) {
-		
+
 	}
 
 	/**
