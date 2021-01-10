@@ -26,7 +26,7 @@ public class GameFrame extends JFrame {
 		super.add(BoardPanel.getInstance(), BorderLayout.CENTER);
 		super.add(ActionsPanel.getInstance(), BorderLayout.EAST);
 		super.add(PlayersPanel.getInstance(), BorderLayout.NORTH);
-		//super.add(DeckPanel.getInstance(), BorderLayout.SOUTH);
+		// super.add(DeckPanel.getInstance(), BorderLayout.SOUTH);
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		super.pack();
 	}
@@ -50,11 +50,12 @@ public class GameFrame extends JFrame {
 	 */
 	public void setGameState(final State state) {
 		this.state = state;
-		
-		//enable/disable buttons depending on which actions are possible for the current player
+
+		// enable/disable buttons depending on which actions are possible for the
+		// current player
 		ActionsPanel.getInstance().updateButtons();
-		
-		//update UI
+
+		// update UI
 		super.repaint();
 	}
 

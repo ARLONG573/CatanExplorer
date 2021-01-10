@@ -162,8 +162,6 @@ public class Board {
 		this.assignAdjacencies(51, 47, 48);
 		this.assignAdjacencies(52, 48, 49);
 		this.assignAdjacencies(53, 49, 50);
-
-		// test everything
 	}
 
 	/**
