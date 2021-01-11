@@ -157,6 +157,13 @@ public class Port implements Editable {
 		return this.type;
 	}
 
+	/**
+	 * @return The position number of the port relative to its hex
+	 */
+	public int getPosition() {
+		return this.position;
+	}
+
 	@Override
 	public void draw(final Graphics g) {
 		// fill

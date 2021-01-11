@@ -7,6 +7,7 @@ import java.awt.Graphics;
 
 import startup.board.data.selectable.HexNumber;
 import startup.board.data.selectable.HexResource;
+import startup.board.data.selectable.PortType;
 import startup.board.editable.Port;
 
 /**
@@ -59,6 +60,38 @@ public class Hex {
 			this.yPoints[i] = this.vertices[i].getY();
 		}
 
+		// assign port properties to the correct vertices
+		if (this.port != null) {
+			final PortType portType = this.port.getType();
+
+			switch (this.port.getPosition()) {
+			case Port.TOP_LEFT:
+				this.vertices[5].setPortType(portType);
+				this.vertices[0].setPortType(portType);
+				break;
+			case Port.TOP_RIGHT:
+				this.vertices[0].setPortType(portType);
+				this.vertices[1].setPortType(portType);
+				break;
+			case Port.RIGHT:
+				this.vertices[1].setPortType(portType);
+				this.vertices[2].setPortType(portType);
+				break;
+			case Port.BOTTOM_RIGHT:
+				this.vertices[2].setPortType(portType);
+				this.vertices[3].setPortType(portType);
+				break;
+			case Port.BOTTOM_LEFT:
+				this.vertices[3].setPortType(portType);
+				this.vertices[4].setPortType(portType);
+				break;
+			case Port.LEFT:
+				this.vertices[4].setPortType(portType);
+				this.vertices[5].setPortType(portType);
+				break;
+			}
+		}
+
 		// figure out this hex's (x, y)
 		int minX = Integer.MAX_VALUE;
 		int maxX = Integer.MIN_VALUE;
@@ -100,5 +133,8 @@ public class Hex {
 		final int textHeight = metrics.getHeight();
 
 		g.drawString(text, this.x - textWidth / 2, this.y + textHeight / 2);
+
+		// paint the port
+
 	}
 }
