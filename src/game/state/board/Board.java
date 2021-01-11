@@ -82,9 +82,6 @@ public class Board {
 	private final Set<Edge> edges;
 	private final Set<Hex> hexes;
 
-	// Vertex reference map, needed to construct the network after creating the set
-	// of hexes
-
 	public Board(final List<startup.board.editable.Hex> hexData) {
 		this.vertices = new HashMap<>();
 		this.edges = new HashSet<>();
