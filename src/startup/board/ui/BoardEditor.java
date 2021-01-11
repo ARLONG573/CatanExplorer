@@ -4,12 +4,15 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import game.state.board.Board;
 import startup.board.data.selectable.HexNumber;
 import startup.board.data.selectable.HexResource;
 import startup.board.data.selectable.PortType;
@@ -36,12 +39,12 @@ class BoardEditor extends JPanel {
 
 	private static BoardEditor theInstance;
 
-	private final Set<Editable> editables;
+	private final List<Editable> editables;
 
 	private BoardEditor() {
 		super.setPreferredSize(new Dimension(BOARD_SIZE, BOARD_SIZE));
 
-		this.editables = new HashSet<>();
+		this.editables = new ArrayList<>();
 		this.addEditables();
 
 		super.addMouseListener(new MouseAdapter() {
@@ -124,7 +127,7 @@ class BoardEditor extends JPanel {
 		this.editables.add(new Hex(9 * Hex.X_DIST, 7 * Hex.RADIUS + 4 * Hex.Y_DIST));
 
 		// even though the ports are attached to their hexes, we will keep a copy of
-		// them in the editables set to easily send them click events
+		// them in the editables list to easily send them click events
 		final Set<Port> ports = new HashSet<>();
 
 		for (final Editable hex : this.editables) {
@@ -187,6 +190,7 @@ class BoardEditor extends JPanel {
 			ErrorUtils.displayErrorMessage(NUMBER_CONFIGURATION_ERROR);
 			return false;
 		}
+
 		// check that all numbers have correct amount
 		if (!numberFreqs.isValid()) {
 			ErrorUtils.displayErrorMessage(NUMBER_CONFIGURATION_ERROR);
@@ -199,6 +203,7 @@ class BoardEditor extends JPanel {
 			ErrorUtils.displayErrorMessage(PORT_CONFIGURATION_ERROR);
 			return false;
 		}
+
 		// check that all ports have correct amount
 		if (!portFreqs.isValid()) {
 			ErrorUtils.displayErrorMessage(PORT_CONFIGURATION_ERROR);
@@ -206,22 +211,30 @@ class BoardEditor extends JPanel {
 		}
 
 		// find the desert and verify that it does not have a number on it
-		for (final Editable editable : this.editables) {
-			if (editable instanceof Hex) {
-				final Hex hex = (Hex) editable;
-
-				if (hex.getResource() == HexResource.DESERT) {
-					if (hex.getNumber() != HexNumber.NONE) {
-						ErrorUtils.displayErrorMessage(INVALID_DESERT_ERROR);
-						return false;
-					}
-
-					break;
+		for (final Hex hex : this.getHexes()) {
+			if (hex.getResource() == HexResource.DESERT) {
+				if (hex.getNumber() != HexNumber.NONE) {
+					ErrorUtils.displayErrorMessage(INVALID_DESERT_ERROR);
+					return false;
 				}
+
+				break;
 			}
 		}
 
 		return true;
+	}
+
+	/**
+	 * This method does not call {@link hasValidConfiguration()}, since this method
+	 * is called only when the Confirm Board button is pressed, which checks the
+	 * configuration before calling this method.
+	 * 
+	 * @return A Board object based on the current state of the board.
+	 * 
+	 */
+	Board createBoard() {
+		return new Board(this.getHexes());
 	}
 
 	@Override
@@ -230,10 +243,20 @@ class BoardEditor extends JPanel {
 
 		// only draw hexes, since each hex is responsible for drawing the port attached
 		// to it (if it has one)
+		for (final Hex hex : this.getHexes()) {
+			hex.draw(g);
+		}
+	}
+
+	private List<Hex> getHexes() {
+		final List<Hex> hexes = new ArrayList<>();
+
 		for (final Editable editable : this.editables) {
 			if (editable instanceof Hex) {
-				((Hex) editable).draw(g);
+				hexes.add((Hex) editable);
 			}
 		}
+
+		return hexes;
 	}
 }

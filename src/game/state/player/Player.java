@@ -28,15 +28,10 @@ public abstract class Player {
 
 	private static final String NEW_LINE = System.lineSeparator();
 
-	// UI variables - consider refactoring if additional member variables make these
-	// variables redundant
 	protected final String name;
 	private final Color color;
 	public boolean isCurrentPlayer;
 	private int numResources;
-	private int numDevCards;
-	private int longestRoadSegment;
-	private int numKnightsPlayed;
 	private int visibleVP;
 
 	public Player(final String name, final Color color) {
@@ -44,9 +39,6 @@ public abstract class Player {
 		this.color = color;
 		this.isCurrentPlayer = false;
 		this.numResources = 0;
-		this.numDevCards = 0;
-		this.longestRoadSegment = 0;
-		this.numKnightsPlayed = 0;
 		this.visibleVP = 0;
 	}
 
@@ -94,12 +86,12 @@ public abstract class Player {
 		g.drawString(this.getDisplayName(), xOffset + BORDER_WIDTH, BORDER_WIDTH + TEXT_PADDING);
 		g.drawString("Resource Cards: " + this.numResources + NEW_LINE, xOffset + BORDER_WIDTH,
 				BORDER_WIDTH + 3 * TEXT_PADDING);
-		g.drawString("Development Cards: " + this.numDevCards + NEW_LINE, xOffset + BORDER_WIDTH,
-				BORDER_WIDTH + 4 * TEXT_PADDING);
-		g.drawString("Road Progress: " + this.longestRoadSegment + NEW_LINE, xOffset + BORDER_WIDTH,
-				BORDER_WIDTH + 5 * TEXT_PADDING);
-		g.drawString("Army Progress: " + this.numKnightsPlayed + NEW_LINE, xOffset + BORDER_WIDTH,
-				BORDER_WIDTH + 6 * TEXT_PADDING);
+		//g.drawString("Development Cards: " + this.numDevCards + NEW_LINE, xOffset + BORDER_WIDTH,
+				//BORDER_WIDTH + 4 * TEXT_PADDING);
+		//g.drawString("Road Progress: " + this.longestRoadSegment + NEW_LINE, xOffset + BORDER_WIDTH,
+				//BORDER_WIDTH + 5 * TEXT_PADDING);
+		//g.drawString("Army Progress: " + this.numKnightsPlayed + NEW_LINE, xOffset + BORDER_WIDTH,
+				//BORDER_WIDTH + 6 * TEXT_PADDING);
 		g.drawString("VP: " + this.visibleVP, xOffset + BORDER_WIDTH, BORDER_WIDTH + 7 * TEXT_PADDING);
 	}
 

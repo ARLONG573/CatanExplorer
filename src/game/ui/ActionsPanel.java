@@ -89,6 +89,6 @@ class ActionsPanel extends JPanel {
 	 * current player.
 	 */
 	void updateButtons() {
-		// TODO
+		this.playDevCardButton.setEnabled(false);
 	}
 }
