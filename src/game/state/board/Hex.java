@@ -20,6 +20,11 @@ public class Hex {
 
 	private static final Font NUMBER_FONT = new Font("Arial", Font.BOLD, 18);
 
+	// variables to help with drawing the port
+	private static final int PORT_WIDTH = (int) (20 + 8 * Math.sqrt(3) / 3);
+	private static final int PORT_X_DIST = (int) (PORT_WIDTH * Math.sqrt(3) / 3);
+	private static final int PORT_Y_DIST = PORT_WIDTH / 2;
+
 	private final HexNumber number;
 	private final HexResource resource;
 
@@ -32,12 +37,16 @@ public class Hex {
 	private final Vertex[] vertices;
 
 	// used for drawing the hex, defined by the vertices
-	private final int[] xPoints;
-	private final int[] yPoints;
+	private final int[] xPointsHex;
+	private final int[] yPointsHex;
 
 	// used for drawing the hex number, can be inferred from the vertices
 	private final int x;
 	private final int y;
+
+	// used for drawing the port, defined by (x, y) and the port position
+	private final int[] xPointsPort;
+	private final int[] yPointsPort;
 
 	public Hex(final startup.board.editable.Hex hex, final Vertex v1, Vertex v2, Vertex v3, Vertex v4, Vertex v5,
 			Vertex v6) {
@@ -53,43 +62,11 @@ public class Hex {
 		this.vertices[4] = v5;
 		this.vertices[5] = v6;
 
-		this.xPoints = new int[6];
-		this.yPoints = new int[6];
+		this.xPointsHex = new int[6];
+		this.yPointsHex = new int[6];
 		for (int i = 0; i < 6; i++) {
-			this.xPoints[i] = this.vertices[i].getX();
-			this.yPoints[i] = this.vertices[i].getY();
-		}
-
-		// assign port properties to the correct vertices
-		if (this.port != null) {
-			final PortType portType = this.port.getType();
-
-			switch (this.port.getPosition()) {
-			case Port.TOP_LEFT:
-				this.vertices[5].setPortType(portType);
-				this.vertices[0].setPortType(portType);
-				break;
-			case Port.TOP_RIGHT:
-				this.vertices[0].setPortType(portType);
-				this.vertices[1].setPortType(portType);
-				break;
-			case Port.RIGHT:
-				this.vertices[1].setPortType(portType);
-				this.vertices[2].setPortType(portType);
-				break;
-			case Port.BOTTOM_RIGHT:
-				this.vertices[2].setPortType(portType);
-				this.vertices[3].setPortType(portType);
-				break;
-			case Port.BOTTOM_LEFT:
-				this.vertices[3].setPortType(portType);
-				this.vertices[4].setPortType(portType);
-				break;
-			case Port.LEFT:
-				this.vertices[4].setPortType(portType);
-				this.vertices[5].setPortType(portType);
-				break;
-			}
+			this.xPointsHex[i] = this.vertices[i].getX();
+			this.yPointsHex[i] = this.vertices[i].getY();
 		}
 
 		// figure out this hex's (x, y)
@@ -110,6 +87,110 @@ public class Hex {
 
 		this.x = (minX + maxX) / 2;
 		this.y = (minY + maxY) / 2;
+
+		// assign port properties to the correct vertices
+		// while we're here, also assign port-drawing coordinates
+		if (this.port != null) {
+			final PortType portType = this.port.getType();
+			this.xPointsPort = new int[4];
+			this.yPointsPort = new int[4];
+
+			switch (this.port.getPosition()) {
+			case Port.TOP_LEFT:
+				this.vertices[5].setPortType(portType);
+				this.vertices[0].setPortType(portType);
+
+				this.xPointsPort[0] = this.vertices[0].getX() - PORT_X_DIST;
+				this.xPointsPort[1] = this.vertices[0].getX();
+				this.xPointsPort[2] = this.vertices[5].getX();
+				this.xPointsPort[3] = this.vertices[5].getX() - PORT_X_DIST;
+
+				this.yPointsPort[0] = this.vertices[0].getY() - PORT_Y_DIST;
+				this.yPointsPort[1] = this.vertices[0].getY();
+				this.yPointsPort[2] = this.vertices[5].getY();
+				this.yPointsPort[3] = this.vertices[5].getY() - PORT_Y_DIST;
+
+				break;
+			case Port.TOP_RIGHT:
+				this.vertices[0].setPortType(portType);
+				this.vertices[1].setPortType(portType);
+
+				this.xPointsPort[0] = this.vertices[0].getX() + PORT_X_DIST;
+				this.xPointsPort[1] = this.vertices[1].getX() + PORT_X_DIST;
+				this.xPointsPort[2] = this.vertices[1].getX();
+				this.xPointsPort[3] = this.vertices[0].getX();
+
+				this.yPointsPort[0] = this.vertices[0].getY() - PORT_Y_DIST;
+				this.yPointsPort[1] = this.vertices[1].getY() - PORT_Y_DIST;
+				this.yPointsPort[2] = this.vertices[1].getY();
+				this.yPointsPort[3] = this.vertices[0].getY();
+
+				break;
+			case Port.RIGHT:
+				this.vertices[1].setPortType(portType);
+				this.vertices[2].setPortType(portType);
+
+				this.xPointsPort[0] = this.vertices[1].getX();
+				this.xPointsPort[1] = this.vertices[1].getX() + PORT_WIDTH;
+				this.xPointsPort[2] = this.vertices[2].getX() + PORT_WIDTH;
+				this.xPointsPort[3] = this.vertices[2].getX();
+
+				this.yPointsPort[0] = this.vertices[1].getY();
+				this.yPointsPort[1] = this.vertices[1].getY();
+				this.yPointsPort[2] = this.vertices[2].getY();
+				this.yPointsPort[3] = this.vertices[2].getY();
+
+				break;
+			case Port.BOTTOM_RIGHT:
+				this.vertices[2].setPortType(portType);
+				this.vertices[3].setPortType(portType);
+
+				this.xPointsPort[0] = this.vertices[2].getX();
+				this.xPointsPort[1] = this.vertices[2].getX() + PORT_X_DIST;
+				this.xPointsPort[2] = this.vertices[3].getX() + PORT_X_DIST;
+				this.xPointsPort[3] = this.vertices[3].getX();
+
+				this.yPointsPort[0] = this.vertices[2].getY();
+				this.yPointsPort[1] = this.vertices[2].getY() + PORT_Y_DIST;
+				this.yPointsPort[2] = this.vertices[3].getY() + PORT_Y_DIST;
+				this.yPointsPort[3] = this.vertices[3].getY();
+
+				break;
+			case Port.BOTTOM_LEFT:
+				this.vertices[3].setPortType(portType);
+				this.vertices[4].setPortType(portType);
+
+				this.xPointsPort[0] = this.vertices[4].getX();
+				this.xPointsPort[1] = this.vertices[3].getX();
+				this.xPointsPort[2] = this.vertices[3].getX() - PORT_X_DIST;
+				this.xPointsPort[3] = this.vertices[4].getX() - PORT_X_DIST;
+
+				this.yPointsPort[0] = this.vertices[4].getY();
+				this.yPointsPort[1] = this.vertices[3].getY();
+				this.yPointsPort[2] = this.vertices[3].getY() + PORT_Y_DIST;
+				this.yPointsPort[3] = this.vertices[4].getY() + PORT_Y_DIST;
+
+				break;
+			case Port.LEFT:
+				this.vertices[4].setPortType(portType);
+				this.vertices[5].setPortType(portType);
+
+				this.xPointsPort[0] = this.vertices[5].getX() - PORT_WIDTH;
+				this.xPointsPort[1] = this.vertices[5].getX();
+				this.xPointsPort[2] = this.vertices[4].getX();
+				this.xPointsPort[3] = this.vertices[4].getX() - PORT_WIDTH;
+
+				this.yPointsPort[0] = this.vertices[5].getY();
+				this.yPointsPort[1] = this.vertices[5].getY();
+				this.yPointsPort[2] = this.vertices[4].getY();
+				this.yPointsPort[3] = this.vertices[4].getY();
+
+				break;
+			}
+		} else {
+			this.xPointsPort = null;
+			this.yPointsPort = null;
+		}
 	}
 
 	/**
@@ -118,10 +199,9 @@ public class Hex {
 	 * @param g
 	 */
 	void paint(final Graphics g) {
-		// TODO draw some indication if the robber is on this hex
 		// paint the resource color
 		g.setColor(this.resource.getBackgroundColor());
-		g.fillPolygon(this.xPoints, this.yPoints, 6);
+		g.fillPolygon(this.xPointsHex, this.yPointsHex, 6);
 
 		// paint the number
 		g.setColor(Color.BLACK);
@@ -135,6 +215,12 @@ public class Hex {
 		g.drawString(text, this.x - textWidth / 2, this.y + textHeight / 2);
 
 		// paint the port
+		if (this.port != null) {
+			g.setColor(this.port.getType().getBackgroundColor());
+			g.fillPolygon(this.xPointsPort, this.yPointsPort, 4);
 
+			g.setColor(Color.BLACK);
+			g.drawPolygon(this.xPointsPort, this.yPointsPort, 4);
+		}
 	}
 }
