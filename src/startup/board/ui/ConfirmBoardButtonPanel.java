@@ -37,7 +37,7 @@ class ConfirmBoardButtonPanel extends JPanel {
 				final Player[] players = PlayerEntriesPanel.getInstance().createPlayers();
 				final State initialState = new State(board, players, 0);
 
-				GameFrame.getInstance().setGameState(initialState);
+				GameFrame.getInstance().initGameState(initialState);
 				GameFrame.getInstance().setVisible(true);
 				GameFrame.getInstance().setLocationRelativeTo(null);
 

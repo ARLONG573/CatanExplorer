@@ -20,6 +20,8 @@ public class State {
 
 	private int currentPlayerIndex;
 
+	private boolean isGameOver = false;
+
 	/**
 	 * Creates a new game state
 	 * 
@@ -95,6 +97,23 @@ public class State {
 	 */
 	public void paintDeck(final Graphics g) {
 		// this.deck.paint(g);
+	}
+
+	/**
+	 * @return Whether or not this game state represents the state of a game that
+	 *         has ended
+	 */
+	public boolean isGameOver() {
+		return this.isGameOver;
+	}
+
+	/**
+	 * Sets whether or not the game is over in this game state.
+	 * 
+	 * @param isGameOver
+	 */
+	public void setGameOver(final boolean isGameOver) {
+		this.isGameOver = isGameOver;
 	}
 
 	/**

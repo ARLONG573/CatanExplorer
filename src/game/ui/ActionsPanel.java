@@ -27,6 +27,7 @@ class ActionsPanel extends JPanel {
 	private static final String BUILD_BUTTON_TEXT = "Build";
 	private static final String PLAY_DEV_CARD_BUTTON_TEXT = "Play dev card";
 	private static final String END_TURN_BUTTON_TEXT = "End turn";
+	private static final String END_GAME_BUTTON_TEXT = "End game";
 	private static final int PADDING = 10;
 
 	private static ActionsPanel theInstance;
@@ -36,9 +37,11 @@ class ActionsPanel extends JPanel {
 	private final JButton buildButton;
 	private final JButton playDevCardButton;
 	private final JButton endTurnButton;
+	private final JButton endGameButton;
 	private final JTextArea gameLogArea;
 
 	private ActionsPanel() {
+		// initializations
 		this.rollDiceButton = new JButton(ROLL_DICE_BUTTON_TEXT);
 		this.rollDiceButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -54,9 +57,13 @@ class ActionsPanel extends JPanel {
 		this.endTurnButton = new JButton(END_TURN_BUTTON_TEXT);
 		this.endTurnButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+		this.endGameButton = new JButton(END_GAME_BUTTON_TEXT);
+		this.endGameButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 		this.gameLogArea = new JTextArea();
 		this.gameLogArea.setEditable(false);
 
+		// placements
 		super.setPreferredSize(new Dimension(4 * Player.PAINT_WIDTH - Board.PAINT_SIZE, 0));
 		super.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		super.add(Box.createRigidArea(new Dimension(0, PADDING)));
@@ -70,7 +77,14 @@ class ActionsPanel extends JPanel {
 		super.add(Box.createRigidArea(new Dimension(0, PADDING)));
 		super.add(this.endTurnButton);
 		super.add(Box.createRigidArea(new Dimension(0, PADDING)));
+		super.add(this.endGameButton);
+		super.add(Box.createRigidArea(new Dimension(0, PADDING)));
 		super.add(this.gameLogArea);
+
+		// listeners
+		this.endGameButton.addActionListener((e) -> {
+			GameFrame.getInstance().setGameOver(true);
+		});
 	}
 
 	/**
@@ -89,6 +103,14 @@ class ActionsPanel extends JPanel {
 	 * current player.
 	 */
 	void updateButtons() {
-		this.playDevCardButton.setEnabled(false);
+		// TODO
+	}
+
+	/**
+	 * 
+	 * @param message
+	 */
+	void printToLog(final String message) {
+		this.gameLogArea.append(message + "\n");
 	}
 }

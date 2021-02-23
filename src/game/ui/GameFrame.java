@@ -15,6 +15,8 @@ import game.state.State;
 public class GameFrame extends JFrame {
 
 	private static final long serialVersionUID = 163328790265462187L;
+	private static final String GAME_START_MESSAGE = "Starting the game.";
+	private static final String GAME_OVER_MESSAGE = "Game is over. Thanks for playing!";
 
 	private static GameFrame theInstance;
 
@@ -43,20 +45,28 @@ public class GameFrame extends JFrame {
 	}
 
 	/**
-	 * Updates the state that this frame is displaying.
+	 * Sets the initial state that the frame displays. This method does nothing if
+	 * the frame is already displaying some state.
 	 * 
 	 * @param state
 	 *            The new state to display
 	 */
-	public void setGameState(final State state) {
-		this.state = state;
+	public void initGameState(final State state) {
+		if (this.state == null) {
+			this.state = state;
 
-		// enable/disable buttons depending on which actions are possible for the
-		// current player
-		ActionsPanel.getInstance().updateButtons();
+			// update UI
+			super.repaint();
+		}
+	}
 
-		// update UI
-		super.repaint();
+	/**
+	 * Sets whether or not the game is over in the current game state.
+	 * 
+	 * @param isGameOver
+	 */
+	public void setGameOver(final boolean isGameOver) {
+		this.state.setGameOver(isGameOver);
 	}
 
 	/**
